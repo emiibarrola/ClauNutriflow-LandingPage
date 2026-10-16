@@ -51,9 +51,6 @@ open -a Safari index.html
 ├── index.html            # Landing page principal completa (HTML5 + Tailwind CSS + Lucide Icons)
 ├── components/
 │   └── LandingPage.jsx   # Componente modular en React / Tailwind para Next.js / Vite
-├── Resources/            # Catálogo oficial y material gráfico original
-├── Notas/
-│   └── UX-UI.md          # Especificaciones de diseño y directrices de conversión
 └── README.md             # Documentación del proyecto
 ```
 
