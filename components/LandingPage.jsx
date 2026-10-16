@@ -19,7 +19,7 @@ const PRODUCTS = [
     tag: '★ El Más Vendido',
     tagColor: 'bg-amber-500',
     unit: '1 KG',
-    image: 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1543158181-1274e5362710?auto=format&fit=crop&w=800&q=80',
   },
   {
     id: 'mix-energetico',
@@ -31,7 +31,7 @@ const PRODUCTS = [
     tag: '⚡ Energía Pura',
     tagColor: 'bg-emerald-600',
     unit: '1 KG',
-    image: 'https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1543158181-1274e5362710?auto=format&fit=crop&w=800&q=80',
   },
   {
     id: 'mix-economico',
@@ -43,7 +43,7 @@ const PRODUCTS = [
     tag: '💰 Mejor Precio',
     tagColor: 'bg-stone-800',
     unit: '1 KG',
-    image: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=800&q=80',
+    image: 'https://plus.unsplash.com/premium_photo-1726863184656-ee0eb26fadc4?auto=format&fit=crop&w=800&q=80',
   },
   {
     id: 'almendra-non-pareil',
@@ -65,7 +65,7 @@ const PRODUCTS = [
     tag: 'Mariposa Extra Light',
     tagColor: 'bg-amber-600',
     unit: '1 KG',
-    image: 'https://images.unsplash.com/photo-1528751014936-863e6e7a319c?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1626012109496-21f579f648dd?auto=format&fit=crop&w=800&q=80',
   },
   {
     id: 'castana-caju',
@@ -85,7 +85,7 @@ const PRODUCTS = [
     desc: 'Limpias y tamizadas, alta concentración de Omega 3 y mucílago soluble.',
     price: 9000,
     unit: '1 KG',
-    image: 'https://images.unsplash.com/photo-1584365685547-9a5fb6f3a70c?auto=format&fit=crop&w=600&q=80',
+    image: 'https://plus.unsplash.com/premium_photo-1726729281152-4d3d387baf87?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 'miel-pura',
@@ -97,7 +97,7 @@ const PRODUCTS = [
     tag: '🍯 100% Pura',
     tagColor: 'bg-amber-500',
     unit: 'Pote',
-    image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1665473052284-164335672208?auto=format&fit=crop&w=600&q=80',
   }
 ];
 
