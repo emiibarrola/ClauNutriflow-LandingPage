@@ -111,13 +111,8 @@
         </a>
       </div>
 
-      <!-- Quick Actions (Original List + Cart Button) -->
+      <!-- Quick Actions (Cart Button) -->
       <div class="flex items-center gap-2.5">
-        <button onclick="openOriginalListModal()" class="hidden md:inline-flex items-center gap-1.5 text-xs font-semibold text-forest-800 bg-forest-100/70 hover:bg-forest-100 px-3.5 py-2.5 rounded-xl transition-colors">
-          <i data-lucide="file-text" class="w-4 h-4"></i>
-          <span>Ver Lista Impresa Original</span>
-        </button>
-
         <button id="open-cart-btn" onclick="toggleCartDrawer(true)" class="relative inline-flex items-center gap-2.5 bg-forest-800 hover:bg-forest-700 text-white font-bold py-2.5 px-4 rounded-xl shadow-soft hover:shadow-card hover:scale-[1.02] transition-all">
           <div class="relative">
             <i data-lucide="shopping-bag" class="w-5 h-5 text-emerald-300"></i>
@@ -160,9 +155,6 @@
           <span class="inline-flex items-center gap-1.5 bg-white border border-stone-200 px-3 py-1.5 rounded-full font-medium shadow-xs">
             <i data-lucide="truck" class="w-4 h-4 text-emerald-600"></i> Envío rápido en 24h en CABA
           </span>
-          <button onclick="openOriginalListModal()" class="md:hidden inline-flex items-center gap-1 bg-sand-200/70 text-forest-800 px-3 py-1.5 rounded-full font-bold">
-            <i data-lucide="image" class="w-3.5 h-3.5"></i> Ver foto del catálogo
-          </button>
         </div>
       </div>
     </div>
@@ -370,30 +362,6 @@
     </div>
   </div>
 
-  <!-- MODAL LIGHTBOX: VER LISTA IMPRESA ORIGINAL (IMG-20261009-WA0099.jpg) -->
-  <div id="original-list-modal" class="fixed inset-0 z-50 hidden transition-opacity">
-    <div onclick="closeOriginalListModal()" class="absolute inset-0 bg-stone-900/80 backdrop-blur-sm"></div>
-    <div class="relative max-w-3xl w-full mx-auto my-6 p-4 max-h-[90vh] flex flex-col items-center justify-center">
-      <div class="bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[85vh] w-full">
-        <div class="p-4 bg-sand-100 flex items-center justify-between border-b border-stone-200">
-          <div class="flex items-center gap-2">
-            <i data-lucide="file-text" class="w-4 h-4 text-forest-800"></i>
-            <h3 class="text-xs sm:text-sm font-bold text-stone-900">Catálogo Original Oficial - NutriFlow Vital</h3>
-          </div>
-          <button onclick="closeOriginalListModal()" class="p-1.5 text-stone-400 hover:text-stone-800 rounded-lg">
-            <i data-lucide="x" class="w-5 h-5"></i>
-          </button>
-        </div>
-        <div class="overflow-auto p-2 bg-stone-100 flex items-center justify-center">
-          <img src="Resources/IMG-20261009-WA0099.jpg" alt="Catálogo Original de Precios NutriFlow" class="max-w-full h-auto rounded-xl shadow">
-        </div>
-        <div class="p-3 bg-white border-t border-stone-200 text-center">
-          <p class="text-xs text-stone-500">Podés agregar cualquiera de estos productos usando los botones en la pantalla principal.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- TOAST FEEDBACK NOTIFICATION -->
   <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
     <div class="bg-forest-900 text-white text-xs font-bold py-3 px-4 rounded-xl shadow-float flex items-center gap-2.5 border border-forest-700">
@@ -440,7 +408,7 @@
         desc: 'Nuez, maní tostado sin sal, castaña de cajú, almendra, pasas de uva y bananas.',
         badge: '💰 Mejor Precio',
         badgeColor: 'bg-stone-800 text-white',
-        image: 'Images/mix_economico.jpg'
+        image: 'https://plus.unsplash.com/premium_photo-1725384940631-9f69032fb663?auto=format&fit=crop&w=600&q=80'
       },
       {
         id: 'granola',
@@ -1056,18 +1024,6 @@
           drawer.classList.add('invisible');
         }, 300);
       }
-    }
-
-    // MODAL LISTA IMPRESA
-    function openOriginalListModal() {
-      const modal = document.getElementById('original-list-modal');
-      modal.classList.remove('hidden');
-      lucide.createIcons();
-    }
-
-    function closeOriginalListModal() {
-      const modal = document.getElementById('original-list-modal');
-      modal.classList.add('hidden');
     }
 
     // TOAST FEEDBACK
