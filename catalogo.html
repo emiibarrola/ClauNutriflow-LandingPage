@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo Completo y Pedidos Online - NutriFlow Vital | Frutos Secos & Semillas</title>
+  
+  <meta name="description" content="Armá tu pedido a medida de frutos secos, mixes, semillas, frutas deshidratadas y miel pura de NutriFlow Vital. Envío rápido en CABA y atención personalizada directa por WhatsApp.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" href="Images/logo.png">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN con configuración idéntica a NutriFlow Vital -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            sand: {
+              50: '#FDFBF7',
+              100: '#F7F3E9',
+              200: '#EFE8D8',
+              300: '#E2D5BE',
+              400: '#CDB996',
+            },
+            forest: {
+              800: '#1B4332',
+              900: '#0F291E',
+              700: '#2D6A4F',
+              600: '#40916C',
+              500: '#52B788',
+              100: '#D8F3DC',
+            },
+            earth: {
+              500: '#B07D3E',
+              600: '#946128',
+              100: '#F5EBE0',
+            }
+          },
+          boxShadow: {
+            'soft': '0 10px 30px -5px rgba(27, 67, 50, 0.05)',
+            'card': '0 15px 35px -5px rgba(27, 67, 50, 0.08)',
+            'float': '0 20px 45px -10px rgba(27, 67, 50, 0.15)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Transición suave para items del carrito */
+    .fade-enter {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: all 0.2s ease-out;
+    }
+    .fade-enter-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body class="bg-sand-50 text-stone-800 font-sans antialiased selection:bg-forest-800 selection:text-white pb-32 md:pb-16">
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <aside class="bg-forest-900 text-stone-200 text-xs py-2 px-4 transition-colors">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1 text-center sm:text-left">
+      <div class="flex items-center justify-center gap-2 font-medium">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>📍 <strong>Armador de Pedidos Online</strong> | Entregas en CABA y GBA en 24/48hs</span>
+      </div>
+      <div class="flex items-center gap-3 text-stone-300">
+        <span>Venta directa minorista & mayorista</span>
+        <a href="https://wa.me/5491160333153" target="_blank" class="hover:text-emerald-400 transition-colors inline-flex items-center gap-1 font-semibold text-white">
+          <i data-lucide="phone" class="w-3.5 h-3.5 text-emerald-400"></i> 11 6033-3153
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- STICKY HEADER -->
+  <header class="sticky top-0 z-40 bg-sand-50/95 backdrop-blur-md border-b border-stone-200/80 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      
+      <!-- Back to Landing + Brand -->
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-stone-600 hover:text-forest-800 bg-white hover:bg-sand-100 border border-stone-200 px-3 py-2 rounded-xl transition-all shadow-xs">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          <span class="hidden sm:inline">Volver a la tienda</span>
+          <span class="sm:hidden">Inicio</span>
+        </a>
+
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <img src="Images/logo.png" alt="NutriFlow Vital" class="w-8 h-8 object-contain">
+          <div>
+            <span class="font-extrabold text-lg sm:text-xl tracking-tight text-forest-800 block leading-none">NutriFlow <span class="text-earth-500 font-light">Vital</span></span>
+            <span class="text-[9px] tracking-widest uppercase font-semibold text-stone-500 block">Lista Oficial de Productos</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Quick Actions (Original List + Cart Button) -->
+      <div class="flex items-center gap-2.5">
+        <button onclick="openOriginalListModal()" class="hidden md:inline-flex items-center gap-1.5 text-xs font-semibold text-forest-800 bg-forest-100/70 hover:bg-forest-100 px-3.5 py-2.5 rounded-xl transition-colors">
+          <i data-lucide="file-text" class="w-4 h-4"></i>
+          <span>Ver Lista Impresa Original</span>
+        </button>
+
+        <button id="open-cart-btn" onclick="toggleCartDrawer(true)" class="relative inline-flex items-center gap-2.5 bg-forest-800 hover:bg-forest-700 text-white font-bold py-2.5 px-4 rounded-xl shadow-soft hover:shadow-card hover:scale-[1.02] transition-all">
+          <div class="relative">
+            <i data-lucide="shopping-bag" class="w-5 h-5 text-emerald-300"></i>
+            <span id="header-badge-count" class="absolute -top-1.5 -right-2 bg-earth-500 text-white text-[10px] font-extrabold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+          </div>
+          <div class="text-left hidden sm:block">
+            <span class="text-[10px] text-emerald-200 uppercase font-semibold block leading-tight">Mi Pedido</span>
+            <span id="header-total-price" class="text-xs font-extrabold block leading-tight">$0</span>
+          </div>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+
+    <!-- HERO SECTION EMPÁTICA -->
+    <div class="bg-gradient-to-br from-white via-sand-50 to-sand-100/60 rounded-3xl p-6 sm:p-10 border border-stone-200/80 shadow-soft mb-8">
+      <div class="max-w-3xl">
+        <span class="text-[11px] font-bold tracking-widest uppercase text-forest-700 bg-forest-100 px-3 py-1.5 rounded-full inline-block mb-3">
+          🛒 Selección Completa & Compra Rápida
+        </span>
+        <h1 class="text-2xl sm:text-4xl font-extrabold text-stone-900 tracking-tight leading-tight">
+          Armá tu pedido a medida de frutos secos y productos naturales
+        </h1>
+        <p class="mt-3 text-stone-600 text-sm sm:text-base leading-relaxed">
+          Elegí las cantidades que necesitás de cada variedad. Vas a ver el total en tiempo real y, con un solo click, nos enviás el listado ordenado a nuestro WhatsApp para coordinar la entrega en CABA o despachos. Sin registros complicados ni vueltas.
+        </p>
+
+        <!-- Píldoras de tranquilidad / UX Empathy -->
+        <div class="mt-6 flex flex-wrap items-center gap-2.5 text-xs text-stone-700">
+          <span class="inline-flex items-center gap-1.5 bg-white border border-stone-200 px-3 py-1.5 rounded-full font-medium shadow-xs">
+            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i> Cosecha nueva y sin sabor rancio
+          </span>
+          <span class="inline-flex items-center gap-1.5 bg-white border border-stone-200 px-3 py-1.5 rounded-full font-medium shadow-xs">
+            <i data-lucide="package-check" class="w-4 h-4 text-emerald-600"></i> Fraccionado higiénico de 1 KG
+          </span>
+          <span class="inline-flex items-center gap-1.5 bg-white border border-stone-200 px-3 py-1.5 rounded-full font-medium shadow-xs">
+            <i data-lucide="truck" class="w-4 h-4 text-emerald-600"></i> Envío rápido en 24h en CABA
+          </span>
+          <button onclick="openOriginalListModal()" class="md:hidden inline-flex items-center gap-1 bg-sand-200/70 text-forest-800 px-3 py-1.5 rounded-full font-bold">
+            <i data-lucide="image" class="w-3.5 h-3.5"></i> Ver foto del catálogo
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BARRA DE BÚSQUEDA Y FILTRADO POR CATEGORÍAS -->
+    <div class="sticky top-20 z-30 bg-sand-50/95 backdrop-blur-md pt-2 pb-4 mb-6 border-b border-stone-200/60">
+      
+      <!-- Fila superior: Input de búsqueda + Contador dinámico -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-3">
+        <div class="relative flex-1">
+          <i data-lucide="search" class="w-5 h-5 text-stone-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
+          <input 
+            type="text" 
+            id="search-input" 
+            oninput="handleSearch(this.value)" 
+            placeholder="Buscar por producto (ej: cajú, chía, miel, granola, almendras...)" 
+            class="w-full bg-white border border-stone-200 text-stone-900 text-sm rounded-2xl pl-12 pr-10 py-3.5 focus:outline-none focus:ring-2 focus:ring-forest-800/20 focus:border-forest-800 transition-all shadow-xs"
+          >
+          <button 
+            id="clear-search-btn" 
+            onclick="clearSearch()" 
+            class="hidden absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 p-1"
+          >
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <div class="flex items-center justify-between sm:justify-end gap-3 text-xs text-stone-500 font-medium px-1">
+          <span id="results-count">26 productos disponibles</span>
+          <div class="hidden sm:flex items-center gap-1 text-forest-800 font-bold">
+            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600"></i>
+            <span>Precios actualizados</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fila inferior: Píldoras de Categorías con scroll horizontal suave -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar text-xs font-semibold">
+        <button onclick="setCategory('todos', this)" class="category-pill active whitespace-nowrap px-4 py-2 rounded-xl bg-forest-800 text-white shadow-xs transition-all">
+          Todos (26)
+        </button>
+        <button onclick="setCategory('mixes', this)" class="category-pill whitespace-nowrap px-4 py-2 rounded-xl bg-white hover:bg-sand-100 text-stone-700 border border-stone-200 transition-all">
+          🥜 Mixes Especiales (4)
+        </button>
+        <button onclick="setCategory('frutos', this)" class="category-pill whitespace-nowrap px-4 py-2 rounded-xl bg-white hover:bg-sand-100 text-stone-700 border border-stone-200 transition-all">
+          🌰 Frutos Secos & Harinas (10)
+        </button>
+        <button onclick="setCategory('semillas', this)" class="category-pill whitespace-nowrap px-4 py-2 rounded-xl bg-white hover:bg-sand-100 text-stone-700 border border-stone-200 transition-all">
+          🌱 Semillas Puras (4)
+        </button>
+        <button onclick="setCategory('frutas-especiales', this)" class="category-pill whitespace-nowrap px-4 py-2 rounded-xl bg-white hover:bg-sand-100 text-stone-700 border border-stone-200 transition-all">
+          🍇 Frutas & Especialidades (6)
+        </button>
+        <button onclick="setCategory('miel', this)" class="category-pill whitespace-nowrap px-4 py-2 rounded-xl bg-white hover:bg-sand-100 text-stone-700 border border-stone-200 transition-all">
+          🍯 Miel de Campo (2)
+        </button>
+      </div>
+
+    </div>
+
+    <!-- GRID DE PRODUCTOS -->
+    <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+      <!-- Los 26 productos se renderizan dinámicamente con JavaScript para garantizar reactividad total con el carrito -->
+    </div>
+
+    <!-- ESTADO VACÍO (Cuando la búsqueda no arroja resultados) -->
+    <div id="empty-state" class="hidden text-center py-16 px-4 bg-white rounded-3xl border border-stone-200 shadow-soft max-w-lg mx-auto my-8">
+      <div class="w-16 h-16 bg-sand-100 rounded-full flex items-center justify-center mx-auto mb-4 text-forest-800">
+        <i data-lucide="search-x" class="w-8 h-8"></i>
+      </div>
+      <h3 class="text-lg font-bold text-stone-900 mb-1">No encontramos ese producto</h3>
+      <p class="text-xs text-stone-500 mb-6">Probá buscando con otro nombre o navegá por las categorías de arriba.</p>
+      <button onclick="clearSearch()" class="inline-flex items-center gap-2 bg-forest-800 hover:bg-forest-700 text-white text-xs font-bold py-2.5 px-5 rounded-xl transition-all">
+        <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+        <span>Ver todos los productos</span>
+      </button>
+    </div>
+
+  </main>
+
+  <!-- FLOATING BOTTOM BAR EN MÓVIL (Muestra el estado del carrito de forma empática y accesible) -->
+  <div id="mobile-floating-bar" class="fixed bottom-4 left-4 right-4 z-40 md:hidden transition-all duration-300 translate-y-28 opacity-0 pointer-events-none">
+    <div class="bg-forest-900/95 backdrop-blur-md text-white p-3.5 rounded-2xl shadow-float border border-forest-700 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center font-bold text-sm">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <div class="text-[11px] text-stone-300 font-medium">
+            <span id="mobile-bar-items-count">0</span> items seleccionados
+          </div>
+          <div id="mobile-bar-total" class="text-base font-extrabold text-white leading-none">
+            $0
+          </div>
+        </div>
+      </div>
+      <button onclick="toggleCartDrawer(true)" class="inline-flex items-center gap-1.5 bg-emerald-500 hover:bg-emerald-400 text-forest-900 font-extrabold text-xs py-2.5 px-4 rounded-xl shadow transition-transform active:scale-95">
+        <span>Ver Pedido</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- DRAWER / PANEL LATERAL DE CARRITO Y CHECKOUT -->
+  <div id="cart-drawer" class="fixed inset-0 z-50 transition-opacity duration-300 opacity-0 pointer-events-none invisible">
+    
+    <!-- Backdrop oscuro con blur -->
+    <div onclick="toggleCartDrawer(false)" class="absolute inset-0 bg-stone-900/60 backdrop-blur-xs transition-opacity"></div>
+
+    <!-- Panel deslizante -->
+    <div id="cart-panel" class="absolute inset-y-0 right-0 max-w-lg w-full bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-out">
+      
+      <!-- Header del Carrito -->
+      <div class="p-5 border-b border-stone-200/80 bg-sand-50/80 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-forest-100 text-forest-800 flex items-center justify-center">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h2 class="text-base font-extrabold text-stone-900">Tu Pedido NutriFlow</h2>
+            <p id="drawer-items-subtitle" class="text-xs text-stone-500">0 variedades seleccionadas</p>
+          </div>
+        </div>
+        <button onclick="toggleCartDrawer(false)" aria-label="Cerrar panel" class="p-2 text-stone-400 hover:text-stone-800 rounded-xl hover:bg-stone-200/50 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Barra de Progreso de Envío Bonificado (Empatía & Motivación) -->
+      <div class="px-5 py-3 bg-sand-100/60 border-b border-stone-200/60">
+        <div class="flex items-center justify-between text-xs font-semibold mb-1.5">
+          <span id="shipping-progress-text" class="text-stone-700">🚚 Envío bonificado en CABA a partir de $40.000</span>
+          <span id="shipping-progress-status" class="text-forest-800 font-extrabold">0%</span>
+        </div>
+        <div class="w-full h-2 bg-stone-200 rounded-full overflow-hidden">
+          <div id="shipping-progress-bar" class="h-full bg-emerald-600 rounded-full transition-all duration-500" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Listado de Items en el Carrito (Scrollable) -->
+      <div id="drawer-items-list" class="flex-1 overflow-y-auto p-5 space-y-3">
+        <!-- Rellenado por JS -->
+      </div>
+
+      <!-- Footer del Carrito: Datos del cliente y CTA WhatsApp -->
+      <div class="border-t border-stone-200/80 p-5 bg-sand-50/50 space-y-4">
+        
+        <!-- Campos de contacto opcionales para personalizar el pedido -->
+        <div class="space-y-2">
+          <div class="grid grid-cols-2 gap-2">
+            <input 
+              type="text" 
+              id="order-name" 
+              placeholder="Tu Nombre (ej: Lucía)" 
+              class="w-full bg-white border border-stone-200 text-stone-800 text-xs rounded-xl px-3 py-2 focus:ring-1 focus:ring-forest-800 focus:outline-none"
+            >
+            <input 
+              type="text" 
+              id="order-location" 
+              placeholder="Barrio / Zona (ej: Flores, CABA)" 
+              class="w-full bg-white border border-stone-200 text-stone-800 text-xs rounded-xl px-3 py-2 focus:ring-1 focus:ring-forest-800 focus:outline-none"
+            >
+          </div>
+          <input 
+            type="text" 
+            id="order-notes" 
+            placeholder="Aclaraciones (ej: timbre, horario preferido...)" 
+            class="w-full bg-white border border-stone-200 text-stone-800 text-xs rounded-xl px-3 py-2 focus:ring-1 focus:ring-forest-800 focus:outline-none"
+          >
+        </div>
+
+        <!-- Totales -->
+        <div class="space-y-1 pt-1">
+          <div class="flex items-center justify-between text-xs text-stone-500 font-medium">
+            <span>Subtotal de productos:</span>
+            <span id="drawer-subtotal" class="font-bold text-stone-800">$0</span>
+          </div>
+          <div class="flex items-center justify-between text-xs text-stone-500 font-medium">
+            <span>Coordinación de envío:</span>
+            <span id="drawer-shipping-badge" class="font-bold text-emerald-700 bg-emerald-100/60 px-2 py-0.5 rounded-md">A coordinar por WhatsApp</span>
+          </div>
+          <div class="flex items-center justify-between text-base font-extrabold text-stone-900 pt-2 border-t border-stone-200">
+            <span>Total estimado:</span>
+            <span id="drawer-total" class="text-xl text-forest-800 font-black">$0</span>
+          </div>
+        </div>
+
+        <!-- Botón Principal: WhatsApp -->
+        <button 
+          onclick="sendOrderWhatsApp()" 
+          id="checkout-whatsapp-btn" 
+          class="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] active:bg-[#1caa51] text-white font-extrabold text-sm py-3.5 px-6 rounded-2xl shadow-md hover:shadow-lg transition-all"
+        >
+          <i data-lucide="message-circle" class="w-5 h-5 fill-white/20"></i>
+          <span>Enviar Pedido por WhatsApp</span>
+        </button>
+
+        <div class="flex items-center justify-between text-[11px] text-stone-400 px-1">
+          <button onclick="clearCart()" class="hover:text-red-600 transition-colors">Vaciar carrito</button>
+          <span>Atención directa al 11 6033-3153</span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL LIGHTBOX: VER LISTA IMPRESA ORIGINAL (IMG-20261009-WA0099.jpg) -->
+  <div id="original-list-modal" class="fixed inset-0 z-50 hidden transition-opacity">
+    <div onclick="closeOriginalListModal()" class="absolute inset-0 bg-stone-900/80 backdrop-blur-sm"></div>
+    <div class="relative max-w-3xl w-full mx-auto my-6 p-4 max-h-[90vh] flex flex-col items-center justify-center">
+      <div class="bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[85vh] w-full">
+        <div class="p-4 bg-sand-100 flex items-center justify-between border-b border-stone-200">
+          <div class="flex items-center gap-2">
+            <i data-lucide="file-text" class="w-4 h-4 text-forest-800"></i>
+            <h3 class="text-xs sm:text-sm font-bold text-stone-900">Catálogo Original Oficial - NutriFlow Vital</h3>
+          </div>
+          <button onclick="closeOriginalListModal()" class="p-1.5 text-stone-400 hover:text-stone-800 rounded-lg">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <div class="overflow-auto p-2 bg-stone-100 flex items-center justify-center">
+          <img src="Resources/IMG-20261009-WA0099.jpg" alt="Catálogo Original de Precios NutriFlow" class="max-w-full h-auto rounded-xl shadow">
+        </div>
+        <div class="p-3 bg-white border-t border-stone-200 text-center">
+          <p class="text-xs text-stone-500">Podés agregar cualquiera de estos productos usando los botones en la pantalla principal.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST FEEDBACK NOTIFICATION -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-forest-900 text-white text-xs font-bold py-3 px-4 rounded-xl shadow-float flex items-center gap-2.5 border border-forest-700">
+      <div class="w-5 h-5 rounded-full bg-emerald-500 text-forest-950 flex items-center justify-center">
+        <i data-lucide="check" class="w-3 h-3 stroke-[3]"></i>
+      </div>
+      <span id="toast-message">Producto actualizado</span>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT: DATA OFICIAL, ESTADO REACTIVO Y CHECKOUT -->
+  <script>
+    // LISTA COMPLETA DE LOS 26 PRODUCTOS OFICIALES DEL CATÁLOGO
+    const PRODUCTS = [
+      // 1. MIXES ESPECIALES & SNACKS
+      {
+        id: 'mix-premium',
+        name: 'Mix Premium',
+        category: 'mixes',
+        unit: '1 KG',
+        price: 23000,
+        desc: 'Nuez Chandler, almendras Non Pareil, avellanas tostadas y castañas de cajú.',
+        badge: 'Mix de Autor',
+        badgeColor: 'bg-emerald-700 text-white',
+        image: 'https://images.unsplash.com/photo-1767877609689-beff32b9c0ac?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'mix-energetico',
+        name: 'Mix Energético',
+        category: 'mixes',
+        unit: '1 KG',
+        price: 19500,
+        desc: 'Nuez, almendras, pasas de uva, castañas de cajú y chips de bananas naturales.',
+        badge: '⚡ Deportivo',
+        badgeColor: 'bg-emerald-600 text-white',
+        image: 'https://images.unsplash.com/photo-1543158181-1274e5362710?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'mix-economico',
+        name: 'Mix Económico',
+        category: 'mixes',
+        unit: '1 KG',
+        price: 13000,
+        desc: 'Nuez, maní tostado sin sal, castaña de cajú, almendra, pasas de uva y bananas.',
+        badge: '💰 Mejor Precio',
+        badgeColor: 'bg-stone-800 text-white',
+        image: 'Images/mix_economico.jpg'
+      },
+      {
+        id: 'granola',
+        name: 'Granola Tradicional',
+        category: 'mixes',
+        unit: '1 KG',
+        price: 13000,
+        desc: 'Avena tostada con miel, semillas crujientes, copos naturales y toques de frutos secos.',
+        badge: 'Desayuno Saludable',
+        badgeColor: 'bg-amber-600 text-white',
+        image: 'https://images.unsplash.com/photo-1517673400267-0251440c45dc?auto=format&fit=crop&w=600&q=80'
+      },
+
+      // 2. FRUTOS SECOS SELECCIONADOS & HARINAS
+      {
+        id: 'nuez-chandler',
+        name: 'Nuez Chandler Extra Light',
+        category: 'frutos',
+        unit: '1 KG',
+        price: 20000,
+        desc: 'Mariposas enteras y mitades de pulpa dorada clara, sin sabor rancio. Cosecha nueva.',
+        badge: 'Mariposa Extra Light',
+        badgeColor: 'bg-amber-600 text-white',
+        image: 'https://images.unsplash.com/photo-1626012109496-21f579f648dd?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'almendra-non-pareil',
+        name: 'Almendra Non Pareil',
+        category: 'frutos',
+        unit: '1 KG',
+        price: 26000,
+        desc: 'Almendras enteras calibre grande seleccionadas, piel fina, sabor dulce y crocante.',
+        badge: 'Calibre Grande',
+        badgeColor: 'bg-emerald-700 text-white',
+        image: 'https://images.unsplash.com/photo-1508061253366-f7da158b6d46?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'castana-caju-natural',
+        name: 'Castaña de Cajú Natural',
+        category: 'frutos',
+        unit: '1 KG',
+        price: 24000,
+        desc: 'Castañas enteras w4 / w320 de textura cremosa y suave sabor mantecoso.',
+        badge: 'Pura & Cremosa',
+        badgeColor: 'bg-stone-700 text-white',
+        image: 'https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'castana-caju-tostada',
+        name: 'Castaña de Cajú Tostada',
+        category: 'frutos',
+        unit: '1 KG',
+        price: 24000,
+        desc: 'Tostado parejo que realza su perfume y crocancia natural, sin agregado de aceites.',
+        badge: 'Tostado Especial',
+        badgeColor: 'bg-amber-700 text-white',
+        image: 'https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'avellana',
+        name: 'Avellana Pelada',
+        category: 'frutos',
+        unit: '1 KG',
+        price: 33500,
+        desc: 'Avellanas enteras seleccionadas de primer calibre, sabor intenso gourmet.',
+        badge: 'Gourmet',
+        badgeColor: 'bg-stone-800 text-white',
+        image: 'https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'pistacho-con-cascara',
+        name: 'Pistacho con Cáscara',
+        category: 'frutos',
+        unit: '1 KG',
+        price: 45500,
+        desc: 'Pistachos tostados y abiertos naturalmente al sol, sabor inconfundible y fresco.',
+        badge: 'Calibre Superior',
+        badgeColor: 'bg-emerald-800 text-white',
+        image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'pistacho-pelado',
+        name: 'Pistacho Pelado',
+        category: 'frutos',
+        unit: '1 KG',
+        price: 39000,
+        desc: 'Pistacho 100% pulpa verde seleccionada, listo para usar en gastronomía o snack.',
+        badge: 'Pulpa Verde',
+        badgeColor: 'bg-emerald-700 text-white',
+        image: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'mani-pelado-sin-sal',
+        name: 'Maní Pelado sin Sal',
+        category: 'frutos',
+        unit: '1 KG',
+        price: 5500,
+        desc: 'Maní tipo runner tostado al punto justo, sin sal agregada, corazón limpio.',
+        badge: 'Sin Sal',
+        badgeColor: 'bg-stone-600 text-white',
+        image: 'https://images.unsplash.com/photo-1567892322481-9b4a11f269a8?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'mani-salado',
+        name: 'Maní Salado',
+        category: 'frutos',
+        unit: '1 KG',
+        price: 5500,
+        desc: 'Tostado crocante con la medida justa de sal marina fina. Snack clásico.',
+        badge: 'Crocante Clásico',
+        badgeColor: 'bg-stone-600 text-white',
+        image: 'https://images.unsplash.com/photo-1528751093498-8e31ee1d9237?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'harina-almendras',
+        name: 'Harina de Almendras Pura',
+        category: 'frutos',
+        unit: '1 KG',
+        price: 8000,
+        desc: 'Molienda extra fina 100% de almendras sin piel, ideal para repostería keto y celíacos.',
+        badge: 'Molienda Fina Keto',
+        badgeColor: 'bg-amber-800 text-white',
+        image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80'
+      },
+
+      // 3. SEMILLAS PURAS & SUPERFOODS
+      {
+        id: 'semilla-chia',
+        name: 'Semilla de Chía',
+        category: 'semillas',
+        unit: '1 KG',
+        price: 9000,
+        desc: 'Chía negra limpia, fuente vegetal suprema de Omega-3, fibra soluble y antioxidantes.',
+        badge: 'Superfood Omega-3',
+        badgeColor: 'bg-stone-800 text-white',
+        image: 'https://images.unsplash.com/photo-1665473052284-164335672208?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'semilla-lino',
+        name: 'Semilla de Lino Dorado',
+        category: 'semillas',
+        unit: '1 KG',
+        price: 5500,
+        desc: 'Lino dorado seleccionado, ideal para activar, moler o sumar a panes y ensaladas.',
+        badge: 'Fibra Digestiva',
+        badgeColor: 'bg-amber-700 text-white',
+        image: 'https://images.unsplash.com/photo-1628178652494-d02e4aa844df?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'semilla-sesamo',
+        name: 'Semilla de Sésamo Integral',
+        category: 'semillas',
+        unit: '1 KG',
+        price: 6500,
+        desc: 'Sésamo entero sin pelar con alto aporte de calcio natural y minerales esenciales.',
+        badge: 'Rico en Calcio',
+        badgeColor: 'bg-stone-700 text-white',
+        image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'semilla-quinoa',
+        name: 'Semilla de Quinoa Blanca',
+        category: 'semillas',
+        unit: '1 KG',
+        price: 13000,
+        desc: 'Quinoa blanca lavada lista para cocción, proteína vegetal completa de origen andino.',
+        badge: 'Proteína Vegetal',
+        badgeColor: 'bg-emerald-800 text-white',
+        image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80'
+      },
+
+      // 4. FRUTAS DESHIDRATADAS & ESPECIALIDADES
+      {
+        id: 'ciruela-sin-carozo',
+        name: 'Ciruela sin Carozo Grande',
+        category: 'frutas-especiales',
+        unit: '1 KG',
+        price: 13000,
+        desc: 'Ciruelas D\'Agen tiernas y carnosas, dulzor natural y alto aporte digestivo.',
+        badge: 'Sin Carozo Calibre XL',
+        badgeColor: 'bg-purple-900 text-white',
+        image: 'https://images.unsplash.com/photo-1603052875302-d376b7c0638a?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'medallon-durazno',
+        name: 'Medallón de Durazno',
+        category: 'frutas-especiales',
+        unit: '1 KG',
+        price: 19500,
+        desc: 'Orejas de durazno de gran calibre, pulpa jugosa secada al sol de Mendoza.',
+        badge: 'Dulzor Solar',
+        badgeColor: 'bg-amber-600 text-white',
+        image: 'https://images.unsplash.com/photo-1596363505729-4190a9506133?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'datiles-argelia',
+        name: 'Dátiles de Argelia',
+        category: 'frutas-especiales',
+        unit: '1 KG',
+        price: 14000,
+        desc: 'Dátiles Deglet Nour selectos, textura suave de caramelo natural y energía pura.',
+        badge: 'Importado Calidad',
+        badgeColor: 'bg-amber-900 text-white',
+        image: 'https://images.unsplash.com/photo-1559181567-c3190ca9959b?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'frutas-abrillantadas',
+        name: 'Frutas Abrillantadas',
+        category: 'frutas-especiales',
+        unit: '1 KG',
+        price: 15500,
+        desc: 'Mix clásico de cubeteado cítrico y frutas glaseadas para panificados y repostería.',
+        badge: 'Repostería',
+        badgeColor: 'bg-rose-700 text-white',
+        image: 'https://images.unsplash.com/photo-1595475207225-428b62bda831?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'tomates-deshidratados',
+        name: 'Tomates Deshidratados',
+        category: 'frutas-especiales',
+        unit: '1 KG',
+        price: 20500,
+        desc: 'Tomates perita secados al sol, sabor umami concentrado para hidratar en oliva y hierbas.',
+        badge: 'Sabor Umami',
+        badgeColor: 'bg-red-800 text-white',
+        image: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'hongos-secos-pino',
+        name: 'Hongos Secos de Pino',
+        category: 'frutas-especiales',
+        unit: '1 KG',
+        price: 42500,
+        desc: 'Fungis silvestres seleccionados de aroma profundo y ahumado para risottos y salsas.',
+        badge: 'Gourmet Silvestre',
+        badgeColor: 'bg-stone-900 text-white',
+        image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80'
+      },
+
+      // 5. MIEL PURA DE CAMPO
+      {
+        id: 'miel-liquida',
+        name: 'Miel Líquida de Campo',
+        category: 'miel',
+        unit: 'Pote 1 KG',
+        price: 5500,
+        desc: 'Miel cruda multifloral de pradera, sin pasteurizar ni jarabes industriales.',
+        badge: '100% Cruda y Pura',
+        badgeColor: 'bg-amber-600 text-white',
+        image: 'https://plus.unsplash.com/premium_photo-1726729281152-4d3d387baf87?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'miel-solida',
+        name: 'Miel Sólida / Cremada',
+        category: 'miel',
+        unit: 'Pote 1 KG',
+        price: 5500,
+        desc: 'Miel cristalizada naturalmente de untuosidad suave y textura manteca irresistible.',
+        badge: 'Untable Cremosa',
+        badgeColor: 'bg-amber-700 text-white',
+        image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=600&q=80'
+      }
+    ];
+
+    // ESTADO DEL CARRITO (Sincronizado con localStorage)
+    let cart = [];
+    let currentCategory = 'todos';
+    let searchQuery = '';
+
+    // Cargar carrito de localStorage
+    function loadCartFromStorage() {
+      try {
+        const stored = localStorage.getItem('nutriflow_cart');
+        if (stored) {
+          cart = JSON.parse(stored);
+        }
+      } catch (e) {
+        console.error('Error al leer el carrito de localStorage:', e);
+        cart = [];
+      }
+    }
+
+    function saveCartToStorage() {
+      try {
+        localStorage.setItem('nutriflow_cart', JSON.stringify(cart));
+      } catch (e) {
+        console.error('Error al guardar el carrito:', e);
+      }
+    }
+
+    // GESTIÓN DE CANTIDADES
+    function getQuantity(title) {
+      const item = cart.find(i => i.title === title || i.name === title);
+      return item ? item.quantity : 0;
+    }
+
+    function setProductQuantity(productId, delta) {
+      const prod = PRODUCTS.find(p => p.id === productId);
+      if (!prod) return;
+
+      const title = prod.name;
+      const price = prod.price;
+      const image = prod.image;
+
+      let item = cart.find(i => i.title === title || i.name === title);
+      if (item) {
+        item.quantity += delta;
+        if (item.quantity <= 0) {
+          cart = cart.filter(i => (i.title !== title && i.name !== title));
+          showToast(`Quitaste ${title}`);
+        } else {
+          showToast(`Actualizado: ${item.quantity}x ${title}`);
+        }
+      } else if (delta > 0) {
+        cart.push({
+          id: prod.id,
+          title: title,
+          name: title,
+          price: price,
+          image: image,
+          unit: prod.unit,
+          quantity: delta
+        });
+        showToast(`Agregaste ${title} al pedido`);
+      }
+
+      saveCartToStorage();
+      updateAllUI();
+    }
+
+    function setDirectQuantity(productId, newQty) {
+      const qty = parseInt(newQty) || 0;
+      const prod = PRODUCTS.find(p => p.id === productId);
+      if (!prod) return;
+
+      const title = prod.name;
+      if (qty <= 0) {
+        cart = cart.filter(i => (i.title !== title && i.name !== title));
+      } else {
+        let item = cart.find(i => i.title === title || i.name === title);
+        if (item) {
+          item.quantity = qty;
+        } else {
+          cart.push({
+            id: prod.id,
+            title: title,
+            name: title,
+            price: prod.price,
+            image: prod.image,
+            unit: prod.unit,
+            quantity: qty
+          });
+        }
+      }
+
+      saveCartToStorage();
+      updateAllUI();
+    }
+
+    function clearCart() {
+      if (cart.length === 0) return;
+      if (confirm('¿Deseas vaciar todos los productos seleccionados?')) {
+        cart = [];
+        saveCartToStorage();
+        updateAllUI();
+        showToast('Carrito vaciado');
+      }
+    }
+
+    // RENDERIZADO DEL CATÁLOGO
+    function renderProducts() {
+      const grid = document.getElementById('products-grid');
+      const emptyState = document.getElementById('empty-state');
+      const resultsCount = document.getElementById('results-count');
+
+      // Filtrado por categoría y búsqueda
+      const filtered = PRODUCTS.filter(prod => {
+        const matchesCategory = (currentCategory === 'todos' || prod.category === currentCategory);
+        const q = searchQuery.toLowerCase().trim();
+        const matchesSearch = !q || 
+          prod.name.toLowerCase().includes(q) || 
+          prod.desc.toLowerCase().includes(q) || 
+          prod.badge.toLowerCase().includes(q);
+        return matchesCategory && matchesSearch;
+      });
+
+      resultsCount.textContent = `${filtered.length} producto${filtered.length === 1 ? '' : 's'} disponible${filtered.length === 1 ? '' : 's'}`;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+
+      grid.innerHTML = filtered.map(prod => {
+        const qty = getQuantity(prod.name);
+        const isInCart = qty > 0;
+
+        return `
+          <div class="product-card bg-white rounded-3xl p-5 border ${isInCart ? 'border-forest-700 ring-2 ring-forest-800/10' : 'border-stone-200/80'} shadow-soft hover:shadow-card hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+            <div>
+              <!-- Imagen + Badges -->
+              <div class="relative overflow-hidden rounded-2xl bg-sand-100 aspect-square mb-4">
+                <img src="${prod.image}" alt="${prod.name} - NutriFlow Vital" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                
+                <span class="absolute top-3 left-3 ${prod.badgeColor} text-[11px] font-extrabold px-3 py-1 rounded-full shadow-sm">
+                  ${prod.badge}
+                </span>
+
+                <span class="absolute top-3 right-3 bg-white/95 text-stone-800 text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs border border-stone-200/40">
+                  ${prod.unit}
+                </span>
+
+                ${isInCart ? `
+                  <div class="absolute bottom-3 left-3 bg-forest-900/90 backdrop-blur-xs text-white text-[11px] font-bold px-2.5 py-1 rounded-lg flex items-center gap-1.5 shadow">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                    <span>${qty} en tu pedido</span>
+                  </div>
+                ` : ''}
+              </div>
+
+              <!-- Textos -->
+              <div class="space-y-1.5">
+                <h3 class="text-base font-bold text-stone-900 group-hover:text-forest-800 transition-colors leading-snug">
+                  ${prod.name}
+                </h3>
+                <p class="text-xs text-stone-500 line-clamp-2 leading-relaxed">
+                  ${prod.desc}
+                </p>
+              </div>
+            </div>
+
+            <!-- Precios y Control de Cantidad -->
+            <div class="pt-4 mt-3 border-t border-stone-100 flex items-center justify-between gap-2">
+              <div>
+                <span class="text-[10px] text-stone-400 block font-medium">Por ${prod.unit}</span>
+                <span class="text-lg font-black text-stone-900">$${prod.price.toLocaleString('es-AR')}</span>
+              </div>
+
+              <!-- Control dinámico de cantidad -->
+              <div>
+                ${!isInCart ? `
+                  <button 
+                    onclick="setProductQuantity('${prod.id}', 1)" 
+                    class="inline-flex items-center gap-1.5 bg-forest-800 hover:bg-forest-700 active:scale-95 text-white text-xs font-bold py-2.5 px-3.5 rounded-xl shadow-xs transition-all"
+                  >
+                    <i data-lucide="plus" class="w-3.5 h-3.5 text-emerald-300"></i>
+                    <span>Agregar</span>
+                  </button>
+                ` : `
+                  <div class="inline-flex items-center gap-1 bg-forest-50 border border-forest-800/30 rounded-xl p-1 shadow-xs">
+                    <button 
+                      onclick="setProductQuantity('${prod.id}', -1)" 
+                      class="w-7 h-7 flex items-center justify-center text-forest-800 hover:bg-white rounded-lg font-bold text-sm transition-colors"
+                      aria-label="Restar uno"
+                    >-</button>
+                    <span class="text-xs font-black text-forest-900 w-6 text-center">${qty}</span>
+                    <button 
+                      onclick="setProductQuantity('${prod.id}', 1)" 
+                      class="w-7 h-7 flex items-center justify-center text-white bg-forest-800 hover:bg-forest-700 rounded-lg font-bold text-sm transition-colors shadow-xs"
+                      aria-label="Sumar uno"
+                    >+</button>
+                  </div>
+                `}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    // ACTUALIZACIÓN DE TODA LA UI (HEADER, DRAWER, FLOATING BAR)
+    function updateAllUI() {
+      const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+      const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+
+      // 1. Header
+      document.getElementById('header-badge-count').textContent = totalItems;
+      document.getElementById('header-total-price').textContent = `$${totalPrice.toLocaleString('es-AR')}`;
+
+      // 2. Mobile Floating Bar
+      const mobileBar = document.getElementById('mobile-floating-bar');
+      document.getElementById('mobile-bar-items-count').textContent = totalItems;
+      document.getElementById('mobile-bar-total').textContent = `$${totalPrice.toLocaleString('es-AR')}`;
+
+      if (totalItems > 0) {
+        mobileBar.classList.remove('translate-y-28', 'opacity-0', 'pointer-events-none');
+      } else {
+        mobileBar.classList.add('translate-y-28', 'opacity-0', 'pointer-events-none');
+      }
+
+      // 3. Shipping Progress (Meta $40.000)
+      const freeShippingGoal = 40000;
+      const progressPercent = Math.min(100, Math.round((totalPrice / freeShippingGoal) * 100));
+      const progressBar = document.getElementById('shipping-progress-bar');
+      const progressText = document.getElementById('shipping-progress-text');
+      const progressStatus = document.getElementById('shipping-progress-status');
+
+      progressBar.style.width = `${progressPercent}%`;
+      progressStatus.textContent = `${progressPercent}%`;
+
+      if (totalPrice >= freeShippingGoal) {
+        progressText.innerHTML = `🎉 <strong>¡Felicitaciones!</strong> Tu pedido califica para <strong>Envío Bonificado</strong> en CABA`;
+        progressBar.classList.remove('bg-emerald-600');
+        progressBar.classList.add('bg-emerald-500');
+      } else if (totalPrice > 0) {
+        const remaining = freeShippingGoal - totalPrice;
+        progressText.innerHTML = `🚚 Agregá <strong>$${remaining.toLocaleString('es-AR')}</strong> más para tener <strong>Envío Gratis</strong> en CABA`;
+      } else {
+        progressText.innerHTML = `🚚 Envío bonificado en CABA a partir de $40.000`;
+      }
+
+      // 4. Cart Drawer Items
+      document.getElementById('drawer-items-subtitle').textContent = `${totalItems} producto${totalItems === 1 ? '' : 's'} en total`;
+      document.getElementById('drawer-subtotal').textContent = `$${totalPrice.toLocaleString('es-AR')}`;
+      document.getElementById('drawer-total').textContent = `$${totalPrice.toLocaleString('es-AR')}`;
+
+      const drawerList = document.getElementById('drawer-items-list');
+      if (cart.length === 0) {
+        drawerList.innerHTML = `
+          <div class="text-center py-16 text-stone-400">
+            <div class="w-14 h-14 bg-sand-100 rounded-full flex items-center justify-center mx-auto mb-3 text-stone-300">
+              <i data-lucide="shopping-basket" class="w-7 h-7"></i>
+            </div>
+            <p class="text-sm font-semibold text-stone-600 mb-1">Tu pedido aún no tiene productos</p>
+            <p class="text-xs text-stone-400 max-w-xs mx-auto">Seleccioná los frutos secos y semillas que quieras del catálogo y vas a ver el resumen acá.</p>
+          </div>
+        `;
+      } else {
+        drawerList.innerHTML = cart.map(item => {
+          const itemTotal = item.price * item.quantity;
+          const matchingProd = PRODUCTS.find(p => p.name === item.title || p.id === item.id);
+          const productId = matchingProd ? matchingProd.id : item.id;
+
+          return `
+            <div class="flex items-center justify-between gap-3 p-3 rounded-2xl bg-sand-50 border border-stone-200/70">
+              <img src="${item.image}" alt="${item.title}" class="w-12 h-12 rounded-xl object-cover border border-stone-200/50">
+              <div class="flex-1 min-w-0">
+                <h4 class="text-xs font-bold text-stone-900 truncate">${item.title}</h4>
+                <div class="flex items-center gap-2 mt-0.5">
+                  <span class="text-xs font-black text-forest-800">$${itemTotal.toLocaleString('es-AR')}</span>
+                  <span class="text-[10px] text-stone-400">($${item.price.toLocaleString('es-AR')}/kg)</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-1 bg-white border border-stone-200 rounded-lg p-0.5">
+                <button onclick="setProductQuantity('${productId}', -1)" class="w-6 h-6 flex items-center justify-center text-stone-500 hover:text-stone-900 font-bold text-xs">-</button>
+                <span class="text-xs font-extrabold w-5 text-center text-stone-800">${item.quantity}</span>
+                <button onclick="setProductQuantity('${productId}', 1)" class="w-6 h-6 flex items-center justify-center text-forest-800 hover:text-forest-900 font-bold text-xs">+</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Re-renderizar productos para reflejar cambios en botones
+      renderProducts();
+      lucide.createIcons();
+    }
+
+    // FILTRADO POR CATEGORÍA
+    function setCategory(cat, btn) {
+      currentCategory = cat;
+      document.querySelectorAll('.category-pill').forEach(b => {
+        b.classList.remove('bg-forest-800', 'text-white', 'active');
+        b.classList.add('bg-white', 'text-stone-700', 'border', 'border-stone-200');
+      });
+
+      if (btn) {
+        btn.classList.add('bg-forest-800', 'text-white', 'active');
+        btn.classList.remove('bg-white', 'text-stone-700', 'border', 'border-stone-200');
+      }
+
+      renderProducts();
+    }
+
+    // BÚSQUEDA
+    function handleSearch(val) {
+      searchQuery = val;
+      const clearBtn = document.getElementById('clear-search-btn');
+      if (val.trim()) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+      renderProducts();
+    }
+
+    function clearSearch() {
+      document.getElementById('search-input').value = '';
+      searchQuery = '';
+      document.getElementById('clear-search-btn').classList.add('hidden');
+      renderProducts();
+    }
+
+    // MODAL DEL CARRITO (DRAWER)
+    function toggleCartDrawer(open) {
+      const drawer = document.getElementById('cart-drawer');
+      const panel = document.getElementById('cart-panel');
+
+      if (open) {
+        drawer.classList.remove('opacity-0', 'pointer-events-none', 'invisible');
+        drawer.classList.add('opacity-100', 'pointer-events-auto');
+        panel.classList.remove('translate-x-full');
+      } else {
+        panel.classList.add('translate-x-full');
+        drawer.classList.add('opacity-0', 'pointer-events-none');
+        drawer.classList.remove('opacity-100', 'pointer-events-auto');
+        setTimeout(() => {
+          drawer.classList.add('invisible');
+        }, 300);
+      }
+    }
+
+    // MODAL LISTA IMPRESA
+    function openOriginalListModal() {
+      const modal = document.getElementById('original-list-modal');
+      modal.classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeOriginalListModal() {
+      const modal = document.getElementById('original-list-modal');
+      modal.classList.add('hidden');
+    }
+
+    // TOAST FEEDBACK
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 2200);
+    }
+
+    // ENVÍO DE PEDIDO POR WHATSAPP (CRO & EMPATÍA)
+    function sendOrderWhatsApp() {
+      if (cart.length === 0) {
+        alert('Por favor agregá al menos un producto a tu pedido antes de enviar.');
+        return;
+      }
+
+      const phone = "5491160333153";
+      const name = document.getElementById('order-name').value.trim();
+      const location = document.getElementById('order-location').value.trim();
+      const notes = document.getElementById('order-notes').value.trim();
+
+      let text = "👋 *¡Hola NutriFlow Vital! Quiero encargar el siguiente pedido:*%0A%0A";
+
+      if (name) {
+        text += `👤 *Cliente:* ${encodeURIComponent(name)}%0A`;
+      }
+      if (location) {
+        text += `📍 *Zona / Entrega:* ${encodeURIComponent(location)}%0A`;
+      }
+      if (name || location) {
+        text += `%0A`;
+      }
+
+      text += `📦 *Detalle del Pedido:*%0A`;
+      let total = 0;
+      cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        text += `• ${item.quantity}x ${encodeURIComponent(item.title)} — $${itemTotal.toLocaleString('es-AR')}%0A`;
+      });
+
+      text += `%0A💰 *Total Estimado:* $${total.toLocaleString('es-AR')}%0A`;
+
+      if (notes) {
+        text += `%0A📝 *Aclaraciones:* ${encodeURIComponent(notes)}%0A`;
+      }
+
+      text += `%0A¿Me confirman disponibilidad y tiempos de entrega? ¡Muchas gracias!`;
+
+      window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+    }
+
+    // INICIALIZACIÓN
+    document.addEventListener('DOMContentLoaded', () => {
+      loadCartFromStorage();
+      updateAllUI();
+      lucide.createIcons();
+    });
+  </script>
+
+</body>
+</html>

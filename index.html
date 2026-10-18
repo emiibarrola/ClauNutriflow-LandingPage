@@ -234,13 +234,14 @@
       
       <!-- LOGO / IDENTIDAD -->
       <a href="#hero" class="flex items-center gap-3 group">
-        <div class="w-12 h-12 rounded-2xl bg-forest-800 text-sand-50 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300">
-          <!-- Icono orgánico / Sol y Semilla -->
+        <!-- <div class="w-12 h-12 rounded-2xl bg-forest-800 text-sand-50 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300">
+          <!~~ Icono orgánico / Sol y Semilla ~~>
           <svg class="w-7 h-7 text-emerald-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
             <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" fill="#52B788" stroke="none"/>
           </svg>
-        </div>
+        </div> -->
+        <img src="images/logo.png" alt="Logotipo Sol y Semilla" class="w-9 h-9 object-contain">
         <div>
           <span class="font-extrabold text-xl sm:text-2xl tracking-tight text-forest-800 block leading-tight">NutriFlow <span class="text-earth-500 font-light">Vital</span></span>
           <span class="text-[10px] tracking-widest uppercase font-semibold text-stone-500 block">Alimentos Reales & Naturales</span>
@@ -248,9 +249,13 @@
       </a>
 
       <!-- NAVEGACIÓN DESKTOP -->
-      <nav aria-label="Navegación principal" class="hidden md:flex items-center gap-8 text-sm font-semibold text-stone-700">
+      <nav aria-label="Navegación principal" class="hidden md:flex items-center gap-7 text-sm font-semibold text-stone-700">
         <a href="#beneficios" class="hover:text-forest-800 transition-colors">Beneficios</a>
         <a href="#productos" class="hover:text-forest-800 transition-colors">Packs & Catálogo</a>
+        <a href="catalogo.html" class="inline-flex items-center gap-1.5 text-forest-800 hover:text-forest-700 font-bold bg-forest-100/60 hover:bg-forest-100 px-3 py-1.5 rounded-xl transition-all">
+          <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-emerald-700"></i>
+          <span>Catálogo Completo</span>
+        </a>
         <a href="#geo-envios" class="hover:text-forest-800 transition-colors">Zonas de Entrega</a>
         <a href="#testimonios" class="hover:text-forest-800 transition-colors">Opiniones</a>
         <a href="#faq" class="hover:text-forest-800 transition-colors">Preguntas Frecuentes</a>
@@ -286,6 +291,13 @@
         <a href="#productos" onclick="toggleMobileMenu()" class="hover:text-forest-800 transition-colors py-1 flex items-center justify-between border-b border-stone-100 pb-2">
           <span>Packs & Catálogo</span>
           <i data-lucide="chevron-right" class="w-4 h-4 text-stone-400"></i>
+        </a>
+        <a href="catalogo.html" class="bg-forest-100/70 text-forest-800 font-bold py-2 px-3 rounded-xl flex items-center justify-between border border-forest-200">
+          <span class="flex items-center gap-2">
+            <i data-lucide="shopping-bag" class="w-4 h-4 text-emerald-700"></i>
+            <span>Catálogo Completo & Armar Pedido</span>
+          </span>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-forest-800"></i>
         </a>
         <a href="#geo-envios" onclick="toggleMobileMenu()" class="hover:text-forest-800 transition-colors py-1 flex items-center justify-between border-b border-stone-100 pb-2">
           <span>Zonas de Entrega</span>
@@ -784,8 +796,8 @@
           </div>
         </div>
         <div class="flex items-center gap-3 w-full md:w-auto">
-          <a href="Resources/IMG-20261009-WA0099.jpg" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-sand-100 hover:bg-sand-200 text-stone-800 font-bold py-3 px-5 rounded-2xl text-xs transition-colors">
-            <i data-lucide="eye" class="w-4 h-4"></i> Ver Lista Completa
+          <a href="catalogo.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-sand-100 hover:bg-forest-100 text-stone-800 hover:text-forest-900 font-bold py-3 px-5 rounded-2xl text-xs transition-colors shadow-xs">
+            <i data-lucide="shopping-bag" class="w-4 h-4 text-emerald-700"></i> Ver Lista Completa & Carrito
           </a>
           <a href="https://wa.me/5491160333153?text=Hola!%20Me%20interesa%20la%20lista%20de%20precios%20mayoristas%20para%20dieteticas" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-forest-800 hover:bg-forest-700 text-white font-bold py-3 px-5 rounded-2xl text-xs shadow transition-all">
             <i data-lucide="message-circle" class="w-4 h-4 text-emerald-300"></i> Pedir Cotización Mayorista
@@ -1234,6 +1246,11 @@
           <span>Enviar Pedido a WhatsApp</span>
         </button>
 
+        <a href="catalogo.html" class="w-full inline-flex items-center justify-center gap-2 bg-sand-100 hover:bg-forest-100 text-stone-800 hover:text-forest-900 font-bold py-3 px-4 rounded-xl text-xs transition-colors">
+          <i data-lucide="shopping-bag" class="w-4 h-4 text-emerald-700"></i>
+          <span>Ver Catálogo Completo (26 variedades)</span>
+        </a>
+
         <p class="text-[11px] text-center text-stone-400">
           Coordinás horario de entrega y método de pago directamente con nosotros.
         </p>
@@ -1257,27 +1274,46 @@
     // Inicializar Iconos Lucide
     lucide.createIcons();
 
-    // Estado del carrito
+    // Estado del carrito con persistencia compartida
     let cart = [];
 
+    function loadCartFromStorage() {
+      try {
+        const stored = localStorage.getItem('nutriflow_cart');
+        if (stored) {
+          cart = JSON.parse(stored);
+        }
+      } catch (e) {
+        cart = [];
+      }
+    }
+
+    function saveCartToStorage() {
+      try {
+        localStorage.setItem('nutriflow_cart', JSON.stringify(cart));
+      } catch (e) {}
+    }
+
     function addToCart(title, price, image) {
-      const existing = cart.find(item => item.title === title);
+      const existing = cart.find(item => item.title === title || item.name === title);
       if (existing) {
         existing.quantity += 1;
       } else {
-        cart.push({ title, price, image, quantity: 1 });
+        cart.push({ title, name: title, price, image, quantity: 1 });
       }
+      saveCartToStorage();
       updateCartUI();
       showToast(`¡${title} añadido al carrito!`);
     }
 
     function changeQuantity(title, delta) {
-      const item = cart.find(i => i.title === title);
+      const item = cart.find(i => i.title === title || i.name === title);
       if (!item) return;
       item.quantity += delta;
       if (item.quantity <= 0) {
-        cart = cart.filter(i => i.title !== title);
+        cart = cart.filter(i => (i.title !== title && i.name !== title));
       }
+      saveCartToStorage();
       updateCartUI();
     }
 
@@ -1303,21 +1339,25 @@
       } else {
         container.innerHTML = cart.map(item => `
           <div class="flex items-center justify-between gap-3 p-3 rounded-2xl bg-sand-50 border border-stone-200/60">
-            <img src="${item.image}" alt="${item.title}" class="w-12 h-12 rounded-xl object-cover">
+            <img src="${item.image}" alt="${item.title || item.name}" class="w-12 h-12 rounded-xl object-cover">
             <div class="flex-1 min-w-0">
-              <h4 class="text-xs font-bold text-stone-800 truncate">${item.title}</h4>
+              <h4 class="text-xs font-bold text-stone-800 truncate">${item.title || item.name}</h4>
               <span class="text-xs text-forest-800 font-extrabold">$${(item.price * item.quantity).toLocaleString('es-AR')}</span>
             </div>
             <div class="flex items-center gap-1.5 bg-white border border-stone-200 rounded-lg p-1">
-              <button onclick="changeQuantity('${item.title}', -1)" class="w-6 h-6 flex items-center justify-center text-stone-500 hover:text-stone-900 font-bold">-</button>
+              <button onclick="changeQuantity('${item.title || item.name}', -1)" class="w-6 h-6 flex items-center justify-center text-stone-500 hover:text-stone-900 font-bold">-</button>
               <span class="text-xs font-bold w-4 text-center">${item.quantity}</span>
-              <button onclick="changeQuantity('${item.title}', 1)" class="w-6 h-6 flex items-center justify-center text-stone-500 hover:text-stone-900 font-bold">+</button>
+              <button onclick="changeQuantity('${item.title || item.name}', 1)" class="w-6 h-6 flex items-center justify-center text-stone-500 hover:text-stone-900 font-bold">+</button>
             </div>
           </div>
         `).join('');
       }
       lucide.createIcons();
     }
+
+    // Cargar carrito existente al abrir la página
+    loadCartFromStorage();
+    updateCartUI();
 
     // Modal Carrito
     const cartDrawer = document.getElementById('cart-drawer');
