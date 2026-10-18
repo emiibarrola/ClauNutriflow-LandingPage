@@ -7,7 +7,7 @@ import {
   Menu, ShoppingCart, ChevronRight
 } from 'lucide-react';
 
-// Catálogo de datos basado en los recursos reales de CLAU Nutriflow
+// Catálogo de datos basado en los recursos reales de NutriFlow Vital
 const PRODUCTS = [
   {
     id: 'mix-premium',
@@ -43,7 +43,7 @@ const PRODUCTS = [
     tag: '💰 Mejor Precio',
     tagColor: 'bg-stone-800',
     unit: '1 KG',
-    image: 'https://plus.unsplash.com/premium_photo-1726863184656-ee0eb26fadc4?auto=format&fit=crop&w=800&q=80',
+    image: 'https://plus.unsplash.com/premium_photo-1725384940631-9f69032fb663?auto=format&fit=crop&w=800&q=80',
   },
   {
     id: 'almendra-non-pareil',
@@ -167,7 +167,7 @@ export default function NutriflowLanding() {
   const handleWhatsAppCheckout = () => {
     if (cart.length === 0) return;
     const phone = "5491139131904";
-    let text = "Hola CLAU Nutriflow! Quiero encargar el siguiente pedido:%0A%0A";
+    let text = "Hola NutriFlow Vital! Quiero encargar el siguiente pedido:%0A%0A";
     cart.forEach(item => {
       text += `• ${item.qty}x ${item.name} ($${(item.price * item.qty).toLocaleString('es-AR')})%0A`;
     });
@@ -207,7 +207,7 @@ export default function NutriflowLanding() {
             </div>
             <div>
               <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-[#1B4332] block leading-tight">
-                CLAU <span className="text-[#B07D3E] font-light">Nutriflow</span>
+                CLAU <span className="text-[#B07D3E] font-light">NutriFlow Vital</span>
               </span>
               <span className="text-[10px] tracking-widest uppercase font-semibold text-stone-500 block">Alimentos Reales & Naturales</span>
             </div>
@@ -313,7 +313,7 @@ export default function NutriflowLanding() {
 
             <a href="#beneficios" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-[#F7F3E9] text-stone-800 border border-stone-200 font-semibold py-4 px-7 rounded-2xl hover:-translate-y-0.5 transition-all text-base shadow-sm">
               <Sparkles className="w-4 h-4 text-[#B07D3E]" />
-              <span>¿Por qué CLAU Nutriflow?</span>
+              <span>¿Por qué NutriFlow Vital?</span>
             </a>
           </div>
 
@@ -338,7 +338,7 @@ export default function NutriflowLanding() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
             <span className="text-xs font-bold tracking-widest uppercase text-[#1B4332] bg-emerald-100/70 px-3.5 py-1.5 rounded-full inline-block">
-              La Diferencia Nutriflow
+              La Diferencia NutriFlow Vital
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">
               Calidad visible, frescura real y nutrición auténtica
