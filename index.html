@@ -1139,15 +1139,23 @@
         return;
       }
       const phone = "5491160333153";
-      let text = "Hola NutriFlow Vital! Quiero realizar el siguiente pedido:%0A%0A";
+      let lines = [
+        "✨ *¡Hola NutriFlow Vital! Quiero realizar el siguiente pedido:*",
+        "",
+        "✅ *Detalle del Pedido:*"
+      ];
       let total = 0;
       cart.forEach(item => {
         const itemTotal = item.price * item.quantity;
         total += itemTotal;
-        text += `• ${item.quantity}x ${item.title} ($${itemTotal.toLocaleString('es-AR')})%0A`;
+        lines.push(`• ${item.quantity}x ${item.title} — $${itemTotal.toLocaleString('es-AR')}`);
       });
-      text += `%0ATotal estimado: $${total.toLocaleString('es-AR')}%0A%0A¿Cuál sería el tiempo de entrega para CABA?`;
-      window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+      lines.push("");
+      lines.push(`⭐ *Total Estimado:* $${total.toLocaleString('es-AR')}`);
+      lines.push("");
+      lines.push("¿Cuál sería el tiempo de entrega para CABA?");
+      const message = lines.join("\n");
+      window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`, '_blank');
     }
 
     // Toggle Menú Móvil

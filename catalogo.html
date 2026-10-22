@@ -896,35 +896,42 @@
       const location = document.getElementById('order-location').value.trim();
       const notes = document.getElementById('order-notes').value.trim();
 
-      let text = "👋 *¡Hola NutriFlow Vital! Quiero encargar el siguiente pedido:*%0A%0A";
+      let lines = [
+        "✨ *¡Hola NutriFlow Vital! Quiero encargar el siguiente pedido:*",
+        ""
+      ];
 
       if (name) {
-        text += `👤 *Cliente:* ${encodeURIComponent(name)}%0A`;
+        lines.push(`▸ *Cliente:* ${name}`);
       }
       if (location) {
-        text += `📍 *Zona / Entrega:* ${encodeURIComponent(location)}%0A`;
+        lines.push(`▸ *Zona / Entrega:* ${location}`);
       }
       if (name || location) {
-        text += `%0A`;
+        lines.push("");
       }
 
-      text += `📦 *Detalle del Pedido:*%0A`;
+      lines.push("✅ *Detalle del Pedido:*");
       let total = 0;
       cart.forEach(item => {
         const itemTotal = item.price * item.quantity;
         total += itemTotal;
-        text += `• ${item.quantity}x ${encodeURIComponent(item.title)} — $${itemTotal.toLocaleString('es-AR')}%0A`;
+        lines.push(`• ${item.quantity}x ${item.title} — $${itemTotal.toLocaleString('es-AR')}`);
       });
 
-      text += `%0A💰 *Total Estimado:* $${total.toLocaleString('es-AR')}%0A`;
+      lines.push("");
+      lines.push(`⭐ *Total Estimado:* $${total.toLocaleString('es-AR')}`);
 
       if (notes) {
-        text += `%0A📝 *Aclaraciones:* ${encodeURIComponent(notes)}%0A`;
+        lines.push("");
+        lines.push(`✎ *Aclaraciones:* ${notes}`);
       }
 
-      text += `%0A¿Me confirman disponibilidad y tiempos de entrega? ¡Muchas gracias!`;
+      lines.push("");
+      lines.push("¿Me confirman disponibilidad y tiempos de entrega? ¡Muchas gracias!");
 
-      window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+      const message = lines.join("\n");
+      window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`, '_blank');
     }
 
     // INICIALIZACIÓN

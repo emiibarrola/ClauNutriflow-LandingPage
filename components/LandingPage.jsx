@@ -164,13 +164,21 @@ export default function NutriflowLanding() {
 
   const handleWhatsAppCheckout = () => {
     if (cart.length === 0) return;
-    const phone = "5491139131904";
-    let text = "Hola NutriFlow Vital! Quiero encargar el siguiente pedido:%0A%0A";
+    const phone = "5491160333153";
+    const lines = [
+      "✨ *¡Hola NutriFlow Vital! Quiero encargar el siguiente pedido:*",
+      "",
+      "✅ *Detalle del Pedido:*"
+    ];
     cart.forEach(item => {
-      text += `• ${item.qty}x ${item.name} ($${(item.price * item.qty).toLocaleString('es-AR')})%0A`;
+      lines.push(`• ${item.qty}x ${item.name} — $${(item.price * item.qty).toLocaleString('es-AR')}`);
     });
-    text += `%0ATotal estimado: $${totalPrice.toLocaleString('es-AR')}%0A%0A¿Tiempo estimado para mi zona?`;
-    window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+    lines.push("");
+    lines.push(`⭐ *Total Estimado:* $${totalPrice.toLocaleString('es-AR')}`);
+    lines.push("");
+    lines.push("¿Tiempo estimado para mi zona?");
+    const message = lines.join("\n");
+    window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`, '_blank');
   };
 
   const filteredProducts = selectedCategory === 'todos' 
