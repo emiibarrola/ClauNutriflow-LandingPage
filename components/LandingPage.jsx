@@ -523,23 +523,24 @@ export default function NutriflowLanding() {
               </div>
             </div>
 
-            <div className="lg:col-span-6 bg-white rounded-3xl p-6 border border-stone-200 shadow-xl space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-[#1B4332] flex items-center justify-center font-bold">
-                  📍
-                </div>
-                <div>
-                  <h3 className="text-base font-bold text-stone-900">Centro de Despacho CABA</h3>
-                  <p className="text-xs text-stone-500">Distribución diaria a toda Capital Federal</p>
-                </div>
+            <div className="lg:col-span-6 bg-white rounded-3xl p-4 border border-stone-200 shadow-xl overflow-hidden">
+              <div className="relative w-full h-80 sm:h-96 bg-stone-100 rounded-2xl overflow-hidden border border-stone-200">
+                <iframe
+                  title="Ubicación NutriFlow Vital - Av. Nazca y Av. Rivadavia, CABA"
+                  src="https://www.google.com/maps?q=Av.+Nazca+y+Av.+Rivadavia,+Ciudad+Aut%C3%B3noma+de+Buenos+Aires,+Argentina&hl=es&z=16&output=embed"
+                  className="w-full h-full border-0"
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </div>
-              <p className="text-xs text-stone-600 leading-relaxed">
-                Empaquetamos cada pedido al vacío o en atmósfera controlada para garantizar que llegue con la textura y humedad óptimas a tu mesa.
-              </p>
-              <div className="pt-2 border-t border-stone-100 flex items-center justify-between text-xs">
-                <span className="font-semibold text-stone-700">Atención WhatsApp 24/7</span>
-                <a href="https://wa.me/5491139131904" target="_blank" rel="noreferrer" className="text-[#1B4332] font-bold hover:underline">
-                  11 3913-1904
+              <div className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-stone-600">
+                <span className="font-semibold text-stone-800 inline-flex items-center gap-1.5">
+                  <MapPin className="w-4 h-4 text-[#1B4332] shrink-0" />
+                  Av. Nazca y Av. Rivadavia, Flores (CABA)
+                </span>
+                <a href="https://wa.me/5491139131904" target="_blank" rel="noreferrer" className="text-[#1B4332] font-bold hover:underline inline-flex items-center gap-1">
+                  Consultar por WhatsApp <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
             </div>
