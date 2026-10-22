@@ -183,7 +183,7 @@
         </div>
 
         <div class="flex items-center justify-between sm:justify-end gap-3 text-xs text-stone-500 font-medium px-1">
-          <span id="results-count">26 productos disponibles</span>
+          <span id="results-count"></span>
           <div class="hidden sm:flex items-center gap-1 text-forest-800 font-bold">
             <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600"></i>
             <span>Precios actualizados</span>
@@ -193,23 +193,23 @@
 
       <!-- Fila inferior: Píldoras de Categorías con scroll horizontal suave -->
       <div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar text-xs font-semibold">
-        <button onclick="setCategory('todos', this)" class="category-pill active whitespace-nowrap px-4 py-2 rounded-xl bg-forest-800 text-white shadow-xs transition-all">
-          Todos (26)
+        <button data-cat="todos" onclick="setCategory('todos', this)" class="category-pill active whitespace-nowrap px-4 py-2 rounded-xl bg-forest-800 text-white shadow-xs transition-all">
+          Todos
         </button>
-        <button onclick="setCategory('mixes', this)" class="category-pill whitespace-nowrap px-4 py-2 rounded-xl bg-white hover:bg-sand-100 text-stone-700 border border-stone-200 transition-all">
-          🥜 Mixes Especiales (4)
+        <button data-cat="mixes" onclick="setCategory('mixes', this)" class="category-pill whitespace-nowrap px-4 py-2 rounded-xl bg-white hover:bg-sand-100 text-stone-700 border border-stone-200 transition-all">
+          🥜 Mixes Especiales
         </button>
-        <button onclick="setCategory('frutos', this)" class="category-pill whitespace-nowrap px-4 py-2 rounded-xl bg-white hover:bg-sand-100 text-stone-700 border border-stone-200 transition-all">
-          🌰 Frutos Secos & Harinas (10)
+        <button data-cat="frutos" onclick="setCategory('frutos', this)" class="category-pill whitespace-nowrap px-4 py-2 rounded-xl bg-white hover:bg-sand-100 text-stone-700 border border-stone-200 transition-all">
+          🌰 Frutos Secos & Harinas
         </button>
-        <button onclick="setCategory('semillas', this)" class="category-pill whitespace-nowrap px-4 py-2 rounded-xl bg-white hover:bg-sand-100 text-stone-700 border border-stone-200 transition-all">
-          🌱 Semillas Puras (4)
+        <button data-cat="semillas" onclick="setCategory('semillas', this)" class="category-pill whitespace-nowrap px-4 py-2 rounded-xl bg-white hover:bg-sand-100 text-stone-700 border border-stone-200 transition-all">
+          🌱 Semillas Puras
         </button>
-        <button onclick="setCategory('frutas-especiales', this)" class="category-pill whitespace-nowrap px-4 py-2 rounded-xl bg-white hover:bg-sand-100 text-stone-700 border border-stone-200 transition-all">
-          🍇 Frutas & Especialidades (6)
+        <button data-cat="frutas-especiales" onclick="setCategory('frutas-especiales', this)" class="category-pill whitespace-nowrap px-4 py-2 rounded-xl bg-white hover:bg-sand-100 text-stone-700 border border-stone-200 transition-all">
+          🍇 Frutas & Especialidades
         </button>
-        <button onclick="setCategory('miel', this)" class="category-pill whitespace-nowrap px-4 py-2 rounded-xl bg-white hover:bg-sand-100 text-stone-700 border border-stone-200 transition-all">
-          🍯 Miel de Campo (2)
+        <button data-cat="miel" onclick="setCategory('miel', this)" class="category-pill whitespace-nowrap px-4 py-2 rounded-xl bg-white hover:bg-sand-100 text-stone-700 border border-stone-200 transition-all">
+          🍯 Miel de Campo
         </button>
       </div>
 
@@ -374,304 +374,144 @@
 
   <!-- JAVASCRIPT: DATA OFICIAL, ESTADO REACTIVO Y CHECKOUT -->
   <script>
-    // LISTA COMPLETA DE LOS 26 PRODUCTOS OFICIALES DEL CATÁLOGO
-    const PRODUCTS = [
-      // 1. MIXES ESPECIALES & SNACKS
-      {
-        id: 'mix-premium',
-        name: 'Mix Premium',
-        category: 'mixes',
-        unit: '1 KG',
-        price: 23000,
-        desc: 'Nuez Chandler, almendras Non Pareil, avellanas tostadas y castañas de cajú.',
-        badge: 'Mix de Autor',
-        badgeColor: 'bg-emerald-700 text-white',
-        image: 'https://images.unsplash.com/photo-1767877609689-beff32b9c0ac?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'mix-energetico',
-        name: 'Mix Energético',
-        category: 'mixes',
-        unit: '1 KG',
-        price: 19500,
-        desc: 'Nuez, almendras, pasas de uva, castañas de cajú y chips de bananas naturales.',
-        badge: '⚡ Deportivo',
-        badgeColor: 'bg-emerald-600 text-white',
-        image: 'https://images.unsplash.com/photo-1543158181-1274e5362710?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'mix-economico',
-        name: 'Mix Económico',
-        category: 'mixes',
-        unit: '1 KG',
-        price: 13000,
-        desc: 'Nuez, maní tostado sin sal, castaña de cajú, almendra, pasas de uva y bananas.',
-        badge: '💰 Mejor Precio',
-        badgeColor: 'bg-stone-800 text-white',
-        image: 'https://plus.unsplash.com/premium_photo-1725384940631-9f69032fb663?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'granola',
-        name: 'Granola Tradicional',
-        category: 'mixes',
-        unit: '1 KG',
-        price: 13000,
-        desc: 'Libre de jarabes artificiales y conservantes',
-        badge: 'Desayuno Saludable',
-        badgeColor: 'bg-amber-600 text-white',
-        image: 'https://images.unsplash.com/photo-1724441980123-aca7911329d0?auto=format&fit=crop&w=600&q=80'
-      },
+    // CATÁLOGO CARGADO EN VIVO DESDE GOOGLE SHEETS VÍA JSONP (Funciona en file:// local y servidor web sin bloqueo CORS)
+    const SHEET_ID = '1k6KRNIZLj1qFaAllTejMoOTnIM-IIKlUqyklf6OquHI';
+    const SHEET_GID = '0';
+    let PRODUCTS = [];
+    let sheetLoadCompleted = false;
+    let sheetLoadFailed = false;
 
-      // 2. FRUTOS SECOS SELECCIONADOS & HARINAS
-      {
-        id: 'nuez-chandler',
-        name: 'Nuez Chandler Extra Light',
-        category: 'frutos',
-        unit: '1 KG',
-        price: 20000,
-        desc: 'Mariposas enteras y mitades de pulpa dorada clara, sin sabor rancio.',
-        badge: 'Mariposa Extra Light',
-        badgeColor: 'bg-amber-600 text-white',
-        image: 'https://images.unsplash.com/photo-1626012109496-21f579f648dd?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'almendra-non-pareil',
-        name: 'Almendra Non Pareil',
-        category: 'frutos',
-        unit: '1 KG',
-        price: 26000,
-        desc: 'Calibre grande seleccionado, textura crujiente y sabor suave no amargo.',
-        badge: 'Calibre Grande',
-        badgeColor: 'bg-emerald-700 text-white',
-        image: 'https://images.unsplash.com/photo-1508061253366-f7da158b6d46?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'castana-caju-natural',
-        name: 'Castaña de Cajú Natural',
-        category: 'frutos',
-        unit: '1 KG',
-        price: 24000,
-        desc: 'Castañas enteras de textura cremosa y suave sabor mantecoso.',
-        badge: 'Pura & Cremosa',
-        badgeColor: 'bg-stone-700 text-white',
-        image: 'https://images.unsplash.com/photo-1723466998040-78d7e2ef6d72?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'castana-caju-tostada',
-        name: 'Castaña de Cajú Tostada',
-        category: 'frutos',
-        unit: '1 KG',
-        price: 24000,
-        desc: 'Tostado parejo que realza su perfume y crocancia natural, sin agregado de aceites.',
-        badge: 'Tostado Especial',
-        badgeColor: 'bg-amber-700 text-white',
-        image: 'https://images.unsplash.com/photo-1729514256038-c489695f4d79?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'avellana',
-        name: 'Avellana Pelada',
-        category: 'frutos',
-        unit: '1 KG',
-        price: 33500,
-        desc: 'Avellanas enteras seleccionadas de primer calibre, sabor intenso gourmet.',
-        badge: 'Gourmet',
-        badgeColor: 'bg-stone-800 text-white',
-        image: 'https://images.unsplash.com/photo-1635847548253-e997e078d1f7?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'pistacho-con-cascara',
-        name: 'Pistacho con Cáscara',
-        category: 'frutos',
-        unit: '1 KG',
-        price: 45500,
-        desc: 'Pistachos tostados y abiertos naturalmente al sol, sabor inconfundible y fresco.',
-        badge: 'Calibre Superior',
-        badgeColor: 'bg-emerald-800 text-white',
-        image: 'https://images.unsplash.com/photo-1769255484432-fcb24e653ec9?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'pistacho-pelado',
-        name: 'Pistacho Pelado',
-        category: 'frutos',
-        unit: '1 KG',
-        price: 39000,
-        desc: 'Pistacho 100% pulpa verde seleccionada, listo para usar en gastronomía o snack.',
-        badge: 'Pulpa Verde',
-        badgeColor: 'bg-emerald-700 text-white',
-        image: 'https://images.unsplash.com/photo-1598110996285-54523b72be93?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'mani-pelado-sin-sal',
-        name: 'Maní Pelado sin Sal',
-        category: 'frutos',
-        unit: '1 KG',
-        price: 5500,
-        desc: 'Sin sal agregada, corazón limpio.',
-        badge: 'Sin Sal',
-        badgeColor: 'bg-stone-600 text-white',
-        image: 'https://images.unsplash.com/photo-1639070863891-a20035caf05a?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'mani-salado',
-        name: 'Maní Salado',
-        category: 'frutos',
-        unit: '1 KG',
-        price: 5500,
-        desc: 'Tostado crocante con la medida justa de sal. Snack clásico.',
-        badge: 'Crocante Clásico',
-        badgeColor: 'bg-stone-600 text-white',
-        image: 'https://images.unsplash.com/photo-1791187981523-d17d14902f42?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'harina-almendras',
-        name: 'Harina de Almendras Pura',
-        category: 'frutos',
-        unit: '1 KG',
-        price: 8000,
-        desc: 'Molienda extra fina 100% de almendras sin piel, ideal para repostería keto y celíacos.',
-        badge: 'Molienda Fina Keto',
-        badgeColor: 'bg-amber-800 text-white',
-        image: 'https://images.unsplash.com/photo-1710857389305-5cba9211033f?auto=format&fit=crop&w=600&q=80'
-      },
+    function fetchSheetRowsJSONP() {
+      return new Promise((resolve, reject) => {
+        const callbackName = '__nutriflowCatalogCb_' + Date.now();
+        const script = document.createElement('script');
+        const fallbackHeaders = [
+          'ID', 'Producto', 'Categoria', 'Presentacion', 'Precio',
+          'Stock_Unidades', 'Umbral_Minimo', 'Estado_Stock', 'Beneficios',
+          'Contenido', 'Imagen_URL', 'En_Landing'
+        ];
 
-      // 3. SEMILLAS PURAS & SUPERFOODS
-      {
-        id: 'semilla-chia',
-        name: 'Semilla de Chía',
-        category: 'semillas',
-        unit: '1 KG',
-        price: 9000,
-        desc: 'Chía negra limpia, fuente vegetal suprema de Omega-3, fibra soluble y antioxidantes.',
-        badge: 'Superfood Omega-3',
-        badgeColor: 'bg-stone-800 text-white',
-        image: 'https://plus.unsplash.com/premium_photo-1726729281152-4d3d387baf87?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'semilla-lino',
-        name: 'Semilla de Lino Dorado',
-        category: 'semillas',
-        unit: '1 KG',
-        price: 5500,
-        desc: 'Lino dorado seleccionado, ideal para activar, moler o sumar a panes y ensaladas.',
-        badge: 'Fibra Digestiva',
-        badgeColor: 'bg-amber-700 text-white',
-        image: 'https://plus.unsplash.com/premium_photo-1726072357487-d5f62862a220?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'semilla-sesamo',
-        name: 'Semilla de Sésamo Integral',
-        category: 'semillas',
-        unit: '1 KG',
-        price: 6500,
-        desc: 'Sésamo entero sin pelar con alto aporte de calcio natural y minerales esenciales.',
-        badge: 'Rico en Calcio',
-        badgeColor: 'bg-stone-700 text-white',
-        image: 'https://images.unsplash.com/photo-1594999791332-48843eebd9d9?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'semilla-quinoa',
-        name: 'Semilla de Quinoa Blanca',
-        category: 'semillas',
-        unit: '1 KG',
-        price: 13000,
-        desc: 'Quinoa blanca lavada lista para cocción, proteína vegetal completa.',
-        badge: 'Proteína Vegetal',
-        badgeColor: 'bg-emerald-800 text-white',
-        image: 'https://plus.unsplash.com/premium_photo-1705207702015-0c1f567a14df?auto=format&fit=crop&w=600&q=80'
-      },
+        const cleanup = () => {
+          delete window[callbackName];
+          if (script.parentNode) script.parentNode.removeChild(script);
+        };
 
-      // 4. FRUTAS DESHIDRATADAS & ESPECIALIDADES
-      {
-        id: 'ciruela-sin-carozo',
-        name: 'Ciruela sin Carozo Grande',
-        category: 'frutas-especiales',
-        unit: '1 KG',
-        price: 13000,
-        desc: 'Ciruelas tiernas y carnosas, dulzor natural y alto aporte digestivo.',
-        badge: 'Sin Carozo Calibre XL',
-        badgeColor: 'bg-purple-900 text-white',
-        image: 'https://images.unsplash.com/photo-1629804699567-4b129f0d27e2?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'medallon-durazno',
-        name: 'Medallón de Durazno',
-        category: 'frutas-especiales',
-        unit: '1 KG',
-        price: 19500,
-        desc: 'Orejas de durazno de gran calibre, pulpa jugosa.',
-        badge: 'Dulzor Solar',
-        badgeColor: 'bg-amber-600 text-white',
-        image: 'https://plus.unsplash.com/premium_photo-1669205342549-cb54151de57a?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'datiles-argelia',
-        name: 'Dátiles de Argelia',
-        category: 'frutas-especiales',
-        unit: '1 KG',
-        price: 14000,
-        desc: 'Dátiles Deglet Nour selectos, textura suave de caramelo natural y energía pura.',
-        badge: 'Importado Calidad',
-        badgeColor: 'bg-amber-900 text-white',
-        image: 'https://plus.unsplash.com/premium_photo-1676208753932-6e8bc83a0b0d?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'frutas-abrillantadas',
-        name: 'Frutas Abrillantadas',
-        category: 'frutas-especiales',
-        unit: '1 KG',
-        price: 15500,
-        desc: 'Mix clásico de cubeteado cítrico y frutas glaseadas para panificados y repostería.',
-        badge: 'Repostería',
-        badgeColor: 'bg-rose-700 text-white',
-        image: 'https://images.unsplash.com/photo-1599929219210-7c422e4d5208?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'tomates-deshidratados',
-        name: 'Tomates Deshidratados',
-        category: 'frutas-especiales',
-        unit: '1 KG',
-        price: 20500,
-        desc: 'Tomates perita secados al sol, sabor umami concentrado para hidratar en oliva y hierbas.',
-        badge: 'Sabor Umami',
-        badgeColor: 'bg-red-800 text-white',
-        image: 'https://images.unsplash.com/photo-1760445530747-56a32103b672?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'hongos-secos-pino',
-        name: 'Hongos Secos de Pino',
-        category: 'frutas-especiales',
-        unit: '1 KG',
-        price: 42500,
-        desc: 'Fungis silvestres seleccionados de aroma profundo y ahumado para risottos y salsas.',
-        badge: 'Gourmet Silvestre',
-        badgeColor: 'bg-stone-900 text-white',
-        image: 'https://images.unsplash.com/photo-1613465263774-cc25b14042c4?auto=format&fit=crop&w=600&q=80'
-      },
+        window[callbackName] = (response) => {
+          cleanup();
+          if (!response || response.status !== 'ok' || !response.table) {
+            reject(new Error('Respuesta inválida de Google Sheet'));
+            return;
+          }
+          const cols = (response.table.cols || []).map((col, idx) => (col && col.label) ? col.label.trim() : fallbackHeaders[idx] || `col_${idx}`);
+          const rows = (response.table.rows || []).map(rowObj => {
+            const item = {};
+            const cells = (rowObj && rowObj.c) || [];
+            cols.forEach((header, idx) => {
+              const cell = cells[idx];
+              item[header] = (cell && cell.v !== null && cell.v !== undefined) ? String(cell.v).trim() : '';
+            });
+            return item;
+          }).filter(r => r.ID && r.ID !== 'ID');
 
-      // 5. MIEL PURA DE CAMPO
-      {
-        id: 'miel-liquida',
-        name: 'Miel Líquida de Campo',
-        category: 'miel',
-        unit: 'Pote 1 KG',
-        price: 5500,
-        desc: 'Miel cruda multifloral de pradera, sin pasteurizar ni jarabes industriales.',
-        badge: '100% Cruda y Pura',
-        badgeColor: 'bg-amber-600 text-white',
-        image: 'https://images.unsplash.com/photo-1665473052284-164335672208?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        id: 'miel-solida',
-        name: 'Miel Sólida / Cremada',
-        category: 'miel',
-        unit: 'Pote 1 KG',
-        price: 5500,
-        desc: 'Miel cristalizada naturalmente de untuosidad suave y textura manteca irresistible.',
-        badge: 'Untable Cremosa',
-        badgeColor: 'bg-amber-700 text-white',
-        image: 'https://images.unsplash.com/photo-1614272786149-ed03a5351970?auto=format&fit=crop&w=600&q=80'
+          resolve(rows);
+        };
+
+        script.onerror = () => {
+          cleanup();
+          reject(new Error('Error de red al consultar Google Sheet'));
+        };
+
+        script.src = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=responseHandler:${callbackName}&gid=${SHEET_GID}&_t=${Date.now()}`;
+        document.head.appendChild(script);
+      });
+    }
+
+    function mapSheetCategoryToCatalog(categoria) {
+      const cat = (categoria || '').toLowerCase();
+      if (cat.includes('mix') || cat.includes('granola')) return 'mixes';
+      if (cat.includes('miel')) return 'miel';
+      if (cat.includes('semilla')) return 'semillas';
+      if (cat.includes('fruta') || cat.includes('deshidratad') || cat.includes('hongo')) return 'frutas-especiales';
+      return 'frutos';
+    }
+
+    function getBadgeColorForCategory(categoryKey) {
+      switch (categoryKey) {
+        case 'mixes': return 'bg-emerald-700 text-white';
+        case 'frutos': return 'bg-amber-700 text-white';
+        case 'semillas': return 'bg-stone-800 text-white';
+        case 'frutas-especiales': return 'bg-rose-800 text-white';
+        case 'miel': return 'bg-amber-600 text-white';
+        default: return 'bg-stone-700 text-white';
       }
-    ];
+    }
+
+    function updateCategoryPillCounts() {
+      const counts = {
+        todos: PRODUCTS.length,
+        mixes: PRODUCTS.filter(p => p.category === 'mixes').length,
+        frutos: PRODUCTS.filter(p => p.category === 'frutos').length,
+        semillas: PRODUCTS.filter(p => p.category === 'semillas').length,
+        'frutas-especiales': PRODUCTS.filter(p => p.category === 'frutas-especiales').length,
+        miel: PRODUCTS.filter(p => p.category === 'miel').length,
+      };
+      const labels = {
+        todos: 'Todos',
+        mixes: '🥜 Mixes Especiales',
+        frutos: '🌰 Frutos Secos & Harinas',
+        semillas: '🌱 Semillas Puras',
+        'frutas-especiales': '🍇 Frutas & Especialidades',
+        miel: '🍯 Miel de Campo',
+      };
+      document.querySelectorAll('.category-pill').forEach(btn => {
+        const cat = btn.getAttribute('data-cat');
+        if (cat && labels[cat] !== undefined) {
+          btn.textContent = `${labels[cat]} (${counts[cat] || 0})`;
+        }
+      });
+    }
+
+    async function loadCatalogFromSheet() {
+      try {
+        const rows = await fetchSheetRowsJSONP();
+
+        PRODUCTS = rows
+          .filter(row => {
+            const estado = (row.Estado_Stock || '').toLowerCase().trim();
+            return row.ID && estado !== 'sin stock' && estado !== 'agotado';
+          })
+          .map(row => {
+            const category = mapSheetCategoryToCatalog(row.Categoria);
+            const contenido = row.Contenido ? ` (${row.Contenido.split(';').join(', ')})` : '';
+            return {
+              id: (row.ID || '').toLowerCase(),
+              name: row.Producto || '',
+              category,
+              unit: (row.Presentacion || '1 KG').toUpperCase(),
+              price: parseInt(String(row.Precio || '0').replace(/[^0-9]/g, ''), 10) || 0,
+              desc: `${row.Beneficios || ''}${contenido}`,
+              badge: row.Categoria || 'Selección Natural',
+              badgeColor: getBadgeColorForCategory(category),
+              image: row.Imagen_URL || ''
+            };
+          });
+
+        sheetLoadCompleted = true;
+        sheetLoadFailed = false;
+        updateCategoryPillCounts();
+        updateAllUI();
+      } catch (err) {
+        PRODUCTS = [];
+        sheetLoadCompleted = true;
+        sheetLoadFailed = true;
+        const grid = document.getElementById('products-grid');
+        const emptyState = document.getElementById('empty-state');
+        const resultsCount = document.getElementById('results-count');
+        if (grid) grid.innerHTML = '';
+        if (emptyState) emptyState.classList.add('hidden');
+        if (resultsCount) resultsCount.textContent = '';
+      }
+    }
 
     // ESTADO DEL CARRITO (Sincronizado con localStorage)
     let cart = [];
@@ -783,6 +623,14 @@
       const grid = document.getElementById('products-grid');
       const emptyState = document.getElementById('empty-state');
       const resultsCount = document.getElementById('results-count');
+
+      // Si aún no cargó el Sheet o si falló la conexión, no mostrar productos ni estado vacío de búsqueda
+      if (!sheetLoadCompleted || sheetLoadFailed) {
+        grid.innerHTML = '';
+        emptyState.classList.add('hidden');
+        resultsCount.textContent = '';
+        return;
+      }
 
       // Filtrado por categoría y búsqueda
       const filtered = PRODUCTS.filter(prod => {
@@ -1083,6 +931,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       loadCartFromStorage();
       updateAllUI();
+      loadCatalogFromSheet();
       lucide.createIcons();
     });
   </script>

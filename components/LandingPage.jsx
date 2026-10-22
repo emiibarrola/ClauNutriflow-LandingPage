@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Phone, Send, ShoppingBag, Plus, Minus, ArrowRight, Sparkles, 
   CheckCircle2, Star, Truck, Leaf, Sprout, Zap, ShieldCheck, 
@@ -7,107 +7,105 @@ import {
   Menu, ShoppingCart, ChevronRight
 } from 'lucide-react';
 
-// Catálogo de datos basado en los recursos reales de NutriFlow Vital
-const PRODUCTS = [
-  {
-    id: 'mix-premium',
-    category: 'mixes',
-    name: 'Mix Premium',
-    subtitle: 'Mix de Autor',
-    desc: 'Nuez Chandler, almendras Non Pareil, avellanas tostadas y castañas de cajú.',
-    price: 23000,
-    tag: '★ El Más Vendido',
-    tagColor: 'bg-amber-500',
-    unit: '1 KG',
-    image: 'https://images.unsplash.com/photo-1543158181-1274e5362710?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 'mix-energetico',
-    category: 'mixes',
-    name: 'Mix Energético',
-    subtitle: 'Mix Deportivo',
-    desc: 'Nuez, almendras, pasas de uva, castañas de cajú y chips de bananas naturales.',
-    price: 19500,
-    tag: '⚡ Energía Pura',
-    tagColor: 'bg-emerald-600',
-    unit: '1 KG',
-    image: 'https://images.unsplash.com/photo-1543158181-1274e5362710?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 'mix-economico',
-    category: 'mixes',
-    name: 'Mix Económico',
-    subtitle: 'Snack Diario',
-    desc: 'Nuez, maní tostado sin sal, castaña de cajú, almendra, pasas de uva y bananas.',
-    price: 13000,
-    tag: '💰 Mejor Precio',
-    tagColor: 'bg-stone-800',
-    unit: '1 KG',
-    image: 'https://plus.unsplash.com/premium_photo-1725384940631-9f69032fb663?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 'almendra-non-pareil',
-    category: 'frutos',
-    name: 'Almendra Non Pareil',
-    subtitle: 'Fruto Puro',
-    desc: 'Calibre grande seleccionado, textura crujiente y sabor suave no amargo.',
-    price: 26000,
-    unit: '1 KG',
-    image: 'https://images.unsplash.com/photo-1508061253366-f7da158b6d46?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 'nuez-chandler',
-    category: 'frutos',
-    name: 'Nuez Chandler Extra Light',
-    subtitle: 'Cosecha Nueva',
-    desc: 'Mariposas enteras y mitades de pulpa dorada clara, sin sabor rancio.',
-    price: 20000,
-    tag: 'Mariposa Extra Light',
-    tagColor: 'bg-amber-600',
-    unit: '1 KG',
-    image: 'https://images.unsplash.com/photo-1626012109496-21f579f648dd?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 'castana-caju',
-    category: 'frutos',
-    name: 'Castaña de Cajú Tostada',
-    subtitle: 'Tostado Artesanal',
-    desc: 'Tostado en seco al punto justo, cremosas y sin sal añadida.',
-    price: 24000,
-    unit: '1 KG',
-    image: 'https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 'chia',
-    category: 'semillas-miel',
-    name: 'Semilla de Chía',
-    subtitle: 'Superalimento',
-    desc: 'Limpias y tamizadas, alta concentración de Omega 3 y mucílago soluble.',
-    price: 9000,
-    unit: '1 KG',
-    image: 'https://plus.unsplash.com/premium_photo-1726729281152-4d3d387baf87?auto=format&fit=crop&w=600&q=80',
-  },
-  {
-    id: 'miel-pura',
-    category: 'semillas-miel',
-    name: 'Miel Pura de Flores',
-    subtitle: 'Apicultura Natural',
-    desc: 'Sin jarabes ni adulteración. Disponible líquida o sólida cremosa.',
-    price: 5500,
-    tag: '🍯 100% Pura',
-    tagColor: 'bg-amber-500',
-    unit: 'Pote',
-    image: 'https://images.unsplash.com/photo-1665473052284-164335672208?auto=format&fit=crop&w=600&q=80',
-  }
-];
+const SHEET_ID = '1k6KRNIZLj1qFaAllTejMoOTnIM-IIKlUqyklf6OquHI';
+const SHEET_GID = '0';
+
+function fetchSheetRowsJSONP() {
+  return new Promise((resolve, reject) => {
+    const callbackName = '__nutriflowReactCb_' + Date.now();
+    const script = document.createElement('script');
+    const fallbackHeaders = [
+      'ID', 'Producto', 'Categoria', 'Presentacion', 'Precio',
+      'Stock_Unidades', 'Umbral_Minimo', 'Estado_Stock', 'Beneficios',
+      'Contenido', 'Imagen_URL', 'En_Landing'
+    ];
+
+    const cleanup = () => {
+      delete window[callbackName];
+      if (script.parentNode) script.parentNode.removeChild(script);
+    };
+
+    window[callbackName] = (response) => {
+      cleanup();
+      if (!response || response.status !== 'ok' || !response.table) {
+        reject(new Error('Respuesta inválida de Google Sheet'));
+        return;
+      }
+      const cols = (response.table.cols || []).map((col, idx) => (col && col.label) ? col.label.trim() : fallbackHeaders[idx] || `col_${idx}`);
+      const rows = (response.table.rows || []).map(rowObj => {
+        const item = {};
+        const cells = (rowObj && rowObj.c) || [];
+        cols.forEach((header, idx) => {
+          const cell = cells[idx];
+          item[header] = (cell && cell.v !== null && cell.v !== undefined) ? String(cell.v).trim() : '';
+        });
+        return item;
+      }).filter(r => r.ID && r.ID !== 'ID');
+
+      resolve(rows);
+    };
+
+    script.onerror = () => {
+      cleanup();
+      reject(new Error('Error de red al consultar Google Sheet'));
+    };
+
+    script.src = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=responseHandler:${callbackName}&gid=${SHEET_GID}&_t=${Date.now()}`;
+    document.head.appendChild(script);
+  });
+}
+
+function mapSheetCategoryToLanding(categoria) {
+  const cat = (categoria || '').toLowerCase();
+  if (cat.includes('mix') || cat.includes('granola')) return 'mixes';
+  if (cat.includes('semilla') || cat.includes('miel')) return 'semillas-miel';
+  return 'frutos';
+}
 
 export default function NutriflowLanding() {
+  const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('todos');
   const [selectedZone, setSelectedZone] = useState('caba-norte');
   const [openFaq, setOpenFaq] = useState(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    fetchSheetRowsJSONP()
+      .then(rows => {
+        if (!isMounted) return;
+        const landingItems = rows
+          .filter(row => {
+            const enLanding = (row.En_Landing || '').toUpperCase().trim();
+            const estado = (row.Estado_Stock || '').toLowerCase().trim();
+            return (enLanding === 'SI' || enLanding === 'SÍ' || enLanding === 'TRUE' || enLanding === '1') &&
+                   estado !== 'sin stock' && estado !== 'agotado';
+          })
+          .map(row => {
+            const contenido = row.Contenido ? ` (${row.Contenido.split(';').join(', ')})` : '';
+            return {
+              id: (row.ID || '').toLowerCase(),
+              category: mapSheetCategoryToLanding(row.Categoria),
+              name: row.Producto || '',
+              subtitle: row.Categoria || 'Selección Natural',
+              desc: `${row.Beneficios || ''}${contenido}`,
+              price: parseInt(String(row.Precio || '0').replace(/[^0-9]/g, ''), 10) || 0,
+              unit: (row.Presentacion || '1 KG').toUpperCase(),
+              image: row.Imagen_URL || '',
+            };
+          });
+        setProducts(landingItems);
+      })
+      .catch(() => {
+        // Sin fallback estático: si falla la conexión no se muestran productos
+        if (isMounted) setProducts([]);
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Delivery zone data
   const zoneInfo = {
@@ -176,8 +174,8 @@ export default function NutriflowLanding() {
   };
 
   const filteredProducts = selectedCategory === 'todos' 
-    ? PRODUCTS 
-    : PRODUCTS.filter(p => p.category === selectedCategory);
+    ? products 
+    : products.filter(p => p.category === selectedCategory);
 
   return (
     <div className="bg-[#FDFBF7] text-stone-800 font-sans selection:bg-[#1B4332] selection:text-white min-h-screen">
@@ -523,23 +521,24 @@ export default function NutriflowLanding() {
               </div>
             </div>
 
-            <div className="lg:col-span-6 bg-white rounded-3xl p-6 border border-stone-200 shadow-xl space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-[#1B4332] flex items-center justify-center font-bold">
-                  📍
-                </div>
-                <div>
-                  <h3 className="text-base font-bold text-stone-900">Centro de Despacho CABA</h3>
-                  <p className="text-xs text-stone-500">Distribución diaria a toda Capital Federal</p>
-                </div>
+            <div className="lg:col-span-6 bg-white rounded-3xl p-4 border border-stone-200 shadow-xl overflow-hidden">
+              <div className="relative w-full h-80 sm:h-96 bg-stone-100 rounded-2xl overflow-hidden border border-stone-200">
+                <iframe
+                  title="Ubicación NutriFlow Vital - Av. Nazca y Av. Rivadavia, CABA"
+                  src="https://www.google.com/maps?q=Av.+Nazca+y+Av.+Rivadavia,+Ciudad+Aut%C3%B3noma+de+Buenos+Aires,+Argentina&hl=es&z=16&output=embed"
+                  className="w-full h-full border-0"
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </div>
-              <p className="text-xs text-stone-600 leading-relaxed">
-                Empaquetamos cada pedido al vacío o en atmósfera controlada para garantizar que llegue con la textura y humedad óptimas a tu mesa.
-              </p>
-              <div className="pt-2 border-t border-stone-100 flex items-center justify-between text-xs">
-                <span className="font-semibold text-stone-700">Atención WhatsApp 24/7</span>
-                <a href="https://wa.me/5491139131904" target="_blank" rel="noreferrer" className="text-[#1B4332] font-bold hover:underline">
-                  11 3913-1904
+              <div className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-stone-600">
+                <span className="font-semibold text-stone-800 inline-flex items-center gap-1.5">
+                  <MapPin className="w-4 h-4 text-[#1B4332] shrink-0" />
+                  Av. Nazca y Av. Rivadavia, Flores (CABA)
+                </span>
+                <a href="https://wa.me/5491139131904" target="_blank" rel="noreferrer" className="text-[#1B4332] font-bold hover:underline inline-flex items-center gap-1">
+                  Consultar por WhatsApp <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
             </div>
