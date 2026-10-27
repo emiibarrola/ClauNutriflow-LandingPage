@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nutriflowvital-int.tail9ad6b8.ts.net/sitemap.xml
