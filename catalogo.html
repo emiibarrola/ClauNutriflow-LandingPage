@@ -996,9 +996,6 @@
         lines.push(`✎ *Aclaraciones:* ${notes}`);
       }
 
-      lines.push("");
-      lines.push("¿Me confirman disponibilidad y tiempos de entrega? ¡Muchas gracias!");
-
       const message = lines.join("\n");
       window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`, '_blank');
     }

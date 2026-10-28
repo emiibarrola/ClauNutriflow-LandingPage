@@ -636,7 +636,7 @@
                 <i data-lucide="map-pin" class="w-4 h-4 text-forest-700 shrink-0"></i>
                 Av. Nazca y Av. Rivadavia, Flores (CABA)
               </span>
-              <a href="https://wa.me/5491160333153?text=Hola,%20quisiera%20consultar%20el%20costo%20y%20tiempo%20de%20envio%20a%20mi%20zona" target="_blank" class="text-forest-800 font-bold hover:underline inline-flex items-center gap-1">
+              <a href="https://wa.me/5491160333153?text=Hola,%20quisiera%20consultar%20el%20costo%20de%20envio%20a%20mi%20zona" target="_blank" class="text-forest-800 font-bold hover:underline inline-flex items-center gap-1">
                 Consultar por WhatsApp <i data-lucide="external-link" class="w-3 h-3"></i>
               </a>
             </div>
@@ -1161,8 +1161,6 @@
       });
       lines.push("");
       lines.push(`⭐ *Total Estimado:* $${total.toLocaleString('es-AR')}`);
-      lines.push("");
-      lines.push("¿Cuál sería el tiempo de entrega para CABA?");
       const message = lines.join("\n");
       window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`, '_blank');
     }

@@ -175,8 +175,6 @@ export default function NutriflowLanding() {
     });
     lines.push("");
     lines.push(`⭐ *Total Estimado:* $${totalPrice.toLocaleString('es-AR')}`);
-    lines.push("");
-    lines.push("¿Tiempo estimado para mi zona?");
     const message = lines.join("\n");
     window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`, '_blank');
   };
