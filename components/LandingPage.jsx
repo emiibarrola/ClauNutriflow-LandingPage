@@ -323,18 +323,6 @@ export default function NutriflowLanding() {
             </a>
           </div>
 
-          {/* Social Proof */}
-          <div className="pt-6 flex items-center justify-center gap-4">
-            <div className="text-left">
-              <div className="flex items-center text-amber-500">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-400" />
-                ))}
-                <span className="ml-2 text-xs font-bold text-stone-800">4.9 / 5.0</span>
-              </div>
-              <p className="text-xs text-stone-500 font-medium">+1.400 envíos completados en Buenos Aires</p>
-            </div>
-          </div>
 
         </div>
       </section>
