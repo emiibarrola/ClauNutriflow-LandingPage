@@ -1103,6 +1103,7 @@
       cartDrawer.classList.remove('opacity-0', 'pointer-events-none', 'invisible');
       cartDrawer.classList.add('opacity-100', 'pointer-events-auto');
       cartPanel.classList.remove('translate-x-full');
+      loadLandingProductsFromSheet({ silent: true });
     });
 
     function closeCart() {
@@ -1141,10 +1142,22 @@
       }, 2500);
     }
 
-    // Enviar pedido por WhatsApp
-    function checkoutWhatsApp() {
+    // Camino B: Enviar pedido por WhatsApp verificando precios en vivo antes de salir
+    async function checkoutWhatsApp() {
       if (cart.length === 0) {
         alert('Por favor agrega al menos un producto a tu carrito.');
+        return;
+      }
+      const waWin = window.open('about:blank', '_blank');
+      try {
+        await Promise.race([
+          loadLandingProductsFromSheet({ silent: true }),
+          new Promise(res => setTimeout(res, 1200))
+        ]);
+      } catch (e) {}
+      if (cart.length === 0) {
+        if (waWin) waWin.close();
+        alert('Los productos seleccionados ya no se encuentran en stock.');
         return;
       }
       const phone = "5491160333153";
@@ -1162,7 +1175,12 @@
       lines.push("");
       lines.push(`⭐ *Total Estimado:* $${total.toLocaleString('es-AR')}`);
       const message = lines.join("\n");
-      window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`, '_blank');
+      const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+      if (waWin) {
+        waWin.location.href = url;
+      } else {
+        window.location.href = url;
+      }
     }
 
     // Toggle Menú Móvil
@@ -1264,12 +1282,69 @@
       return 'frutos';
     }
 
-    async function loadLandingProductsFromSheet() {
+    let lastLandingSheetSignature = '';
+    let isFetchingLandingSheet = false;
+
+    function syncLandingCartWithRows(rows) {
+      if (!cart || cart.length === 0) return false;
+      let changed = false;
+      const validCart = [];
+
+      cart.forEach(item => {
+        const itemTitle = (item.title || item.name || '').trim().toLowerCase();
+        const matchedRow = rows.find(r => {
+          const rName = (r.Producto || '').trim();
+          const rUnit = (r.Presentacion || '1 KG').toUpperCase().trim();
+          const fullTitle = `${rName} ${rUnit}`.trim().toLowerCase();
+          return fullTitle === itemTitle || rName.toLowerCase() === itemTitle;
+        });
+
+        if (matchedRow) {
+          const estado = (matchedRow.Estado_Stock || '').toLowerCase().trim();
+          if (estado === 'sin stock' || estado === 'agotado') {
+            changed = true;
+            return;
+          }
+          const newPrice = parseInt(String(matchedRow.Precio || '0').replace(/[^0-9]/g, ''), 10) || 0;
+          if (newPrice > 0 && item.price !== newPrice) {
+            item.price = newPrice;
+            changed = true;
+          }
+          if (matchedRow.Imagen_URL && item.image !== matchedRow.Imagen_URL) {
+            item.image = matchedRow.Imagen_URL;
+            changed = true;
+          }
+        }
+        validCart.push(item);
+      });
+
+      if (changed) {
+        cart = validCart;
+        saveCartToStorage();
+        updateCartUI();
+      }
+      return changed;
+    }
+
+    async function loadLandingProductsFromSheet(options = {}) {
+      const { silent = false } = options;
       const grid = document.getElementById('product-grid');
-      if (!grid) return;
+      if (!grid || isFetchingLandingSheet) return;
+      isFetchingLandingSheet = true;
 
       try {
         const rows = await fetchSheetRowsJSONP();
+        const newSignature = JSON.stringify(rows);
+        const isFirstLoad = !lastLandingSheetSignature;
+        const hasSheetChanged = newSignature !== lastLandingSheetSignature;
+
+        const cartChanged = syncLandingCartWithRows(rows);
+
+        if (silent && !hasSheetChanged) {
+          isFetchingLandingSheet = false;
+          return;
+        }
+        lastLandingSheetSignature = newSignature;
 
         const landingProducts = rows.filter(row => {
           const enLanding = (row.En_Landing || '').toUpperCase().trim();
@@ -1324,13 +1399,37 @@
         }).join('');
 
         lucide.createIcons();
+        if (!isFirstLoad && (hasSheetChanged || cartChanged)) {
+          showToast('🔄 Precios y catálogo actualizados en vivo');
+        }
       } catch (err) {
-        // Sin fallback estático: si falla la conexión no se muestran productos
-        grid.innerHTML = '';
+        if (!silent) {
+          // Sin fallback estático: si falla la conexión inicial no se muestran productos
+          grid.innerHTML = '';
+        }
+      } finally {
+        isFetchingLandingSheet = false;
       }
     }
 
     loadLandingProductsFromSheet();
+
+    // Camino A: Sondeo automático cada 30s + al volver a la pestaña (visibilitychange / focus)
+    setInterval(() => {
+      if (document.visibilityState === 'visible') {
+        loadLandingProductsFromSheet({ silent: true });
+      }
+    }, 30000);
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        loadLandingProductsFromSheet({ silent: true });
+      }
+    });
+
+    window.addEventListener('focus', () => {
+      loadLandingProductsFromSheet({ silent: true });
+    });
 
     // FAQ Acordeón
     function toggleFaq(button) {

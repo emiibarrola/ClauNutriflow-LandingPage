@@ -449,6 +449,8 @@
     let PRODUCTS = [];
     let sheetLoadCompleted = false;
     let sheetLoadFailed = false;
+    let lastCatalogSheetSignature = '';
+    let isFetchingCatalogSheet = false;
 
     function fetchSheetRowsJSONP() {
       return new Promise((resolve, reject) => {
@@ -540,9 +542,59 @@
       });
     }
 
-    async function loadCatalogFromSheet() {
+    function syncCatalogCartWithProducts(newProducts) {
+      if (!cart || cart.length === 0) return false;
+      let changed = false;
+      const validCart = [];
+
+      cart.forEach(item => {
+        const itemTitle = (item.title || item.name || '').trim().toLowerCase();
+        const matchedProd = newProducts.find(p =>
+          p.id === item.id ||
+          p.name.trim().toLowerCase() === itemTitle ||
+          `${p.name} ${p.unit}`.trim().toLowerCase() === itemTitle
+        );
+
+        // Si el producto existe en el catálogo activo, sincronizar precio/imagen
+        if (matchedProd) {
+          if (matchedProd.price > 0 && item.price !== matchedProd.price) {
+            item.price = matchedProd.price;
+            changed = true;
+          }
+          if (matchedProd.image && item.image !== matchedProd.image) {
+            item.image = matchedProd.image;
+            changed = true;
+          }
+          validCart.push(item);
+        } else {
+          // Si ya no está en productos con stock, se quita del carrito
+          changed = true;
+        }
+      });
+
+      if (changed) {
+        cart = validCart;
+        saveCartToStorage();
+      }
+      return changed;
+    }
+
+    async function loadCatalogFromSheet(options = {}) {
+      const { silent = false } = options;
+      if (isFetchingCatalogSheet) return;
+      isFetchingCatalogSheet = true;
+
       try {
         const rows = await fetchSheetRowsJSONP();
+        const newSignature = JSON.stringify(rows);
+        const isFirstLoad = !lastCatalogSheetSignature;
+        const hasSheetChanged = newSignature !== lastCatalogSheetSignature;
+
+        if (silent && !hasSheetChanged) {
+          isFetchingCatalogSheet = false;
+          return;
+        }
+        lastCatalogSheetSignature = newSignature;
 
         PRODUCTS = rows
           .filter(row => {
@@ -565,20 +617,28 @@
             };
           });
 
+        const cartChanged = syncCatalogCartWithProducts(PRODUCTS);
         sheetLoadCompleted = true;
         sheetLoadFailed = false;
         updateCategoryPillCounts();
         updateAllUI();
+        if (!isFirstLoad && (hasSheetChanged || cartChanged)) {
+          showToast('🔄 Precios y stock actualizados en vivo');
+        }
       } catch (err) {
-        PRODUCTS = [];
-        sheetLoadCompleted = true;
-        sheetLoadFailed = true;
-        const grid = document.getElementById('products-grid');
-        const emptyState = document.getElementById('empty-state');
-        const resultsCount = document.getElementById('results-count');
-        if (grid) grid.innerHTML = '';
-        if (emptyState) emptyState.classList.add('hidden');
-        if (resultsCount) resultsCount.textContent = '';
+        if (!silent) {
+          PRODUCTS = [];
+          sheetLoadCompleted = true;
+          sheetLoadFailed = true;
+          const grid = document.getElementById('products-grid');
+          const emptyState = document.getElementById('empty-state');
+          const resultsCount = document.getElementById('results-count');
+          if (grid) grid.innerHTML = '';
+          if (emptyState) emptyState.classList.add('hidden');
+          if (resultsCount) resultsCount.textContent = '';
+        }
+      } finally {
+        isFetchingCatalogSheet = false;
       }
     }
 
@@ -933,6 +993,7 @@
         drawer.classList.remove('opacity-0', 'pointer-events-none', 'invisible');
         drawer.classList.add('opacity-100', 'pointer-events-auto');
         panel.classList.remove('translate-x-full');
+        loadCatalogFromSheet({ silent: true });
       } else {
         panel.classList.add('translate-x-full');
         drawer.classList.add('opacity-0', 'pointer-events-none');
@@ -953,10 +1014,24 @@
       }, 2200);
     }
 
-    // ENVÍO DE PEDIDO POR WHATSAPP (CRO & EMPATÍA)
-    function sendOrderWhatsApp() {
+    // Camino B: ENVÍO DE PEDIDO POR WHATSAPP verificando precios en vivo antes de salir
+    async function sendOrderWhatsApp() {
       if (cart.length === 0) {
         alert('Por favor agregá al menos un producto a tu pedido antes de enviar.');
+        return;
+      }
+
+      const waWin = window.open('about:blank', '_blank');
+      try {
+        await Promise.race([
+          loadCatalogFromSheet({ silent: true }),
+          new Promise(res => setTimeout(res, 1200))
+        ]);
+      } catch (e) {}
+
+      if (cart.length === 0) {
+        if (waWin) waWin.close();
+        alert('Los productos seleccionados ya no se encuentran en stock.');
         return;
       }
 
@@ -997,15 +1072,36 @@
       }
 
       const message = lines.join("\n");
-      window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`, '_blank');
+      const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+      if (waWin) {
+        waWin.location.href = url;
+      } else {
+        window.location.href = url;
+      }
     }
 
-    // INICIALIZACIÓN
+    // INICIALIZACIÓN + Camino A (Sondeo automático cada 30s y al volver a la pestaña)
     document.addEventListener('DOMContentLoaded', () => {
       loadCartFromStorage();
       updateAllUI();
       loadCatalogFromSheet();
       lucide.createIcons();
+
+      setInterval(() => {
+        if (document.visibilityState === 'visible') {
+          loadCatalogFromSheet({ silent: true });
+        }
+      }, 30000);
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+          loadCatalogFromSheet({ silent: true });
+        }
+      });
+
+      window.addEventListener('focus', () => {
+        loadCatalogFromSheet({ silent: true });
+      });
     });
   </script>
 
