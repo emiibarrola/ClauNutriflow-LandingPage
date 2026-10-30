@@ -46,6 +46,32 @@
   <meta name="twitter:description" content="Snacks saludables, frutos secos seleccionados, mixes energéticos, semillas y miel pura. Pedidos por WhatsApp con entrega en CABA y GBA.">
   <meta name="twitter:image" content="https://www.nutriflowvital.com.ar/Images/og-nutriflow.jpg">
 
+  <!-- Google tag (gtag.js) - Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QGFDVNL0R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8QGFDVNL0R');
+
+    // Medición automática de clics directos a WhatsApp
+    document.addEventListener('click', function(e) {
+      const link = e.target && e.target.closest ? e.target.closest('a[href*="wa.me"], a[href*="whatsapp.com"]') : null;
+      if (link && typeof gtag === 'function') {
+        gtag('event', 'click_whatsapp', {
+          event_category: 'contacto_directo',
+          event_label: link.getAttribute('href') || 'whatsapp_link',
+          page_location: window.location.pathname
+        });
+        gtag('event', 'generate_lead', {
+          currency: 'ARS',
+          value: 0,
+          method: 'whatsapp_direct_link'
+        });
+      }
+    });
+  </script>
+
   <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1221,6 +1247,20 @@
       });
       lines.push("");
       lines.push(`⭐ *Total Estimado:* $${total.toLocaleString('es-AR')}`);
+      if (typeof gtag === 'function') {
+        gtag('event', 'generate_lead', {
+          currency: 'ARS',
+          value: total,
+          items_count: cart.reduce((a, i) => a + i.quantity, 0),
+          method: 'whatsapp_checkout_landing'
+        });
+        gtag('event', 'click_whatsapp', {
+          event_category: 'checkout_pedido',
+          event_label: 'landing_cart',
+          value: total,
+          currency: 'ARS'
+        });
+      }
       const message = lines.join("\n");
       const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
       if (waWin) {
