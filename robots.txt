@@ -1,4 +1,53 @@
+# =========================================================================
+# NUTRIFLOW VITAL — ROBOTS.TXT (SEO + GEO AI CRAWLER ALLOWLIST)
+# Ubicación: https://www.nutriflowvital.com.ar/robots.txt
+# =========================================================================
+
 User-agent: *
 Allow: /
 
+# Motores de Búsqueda Tradicionales
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Motores Generativos y de Respuesta IA (GEO - Generative Engine Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Sitemaps y Manifiestos GEO para LLMs
 Sitemap: https://www.nutriflowvital.com.ar/sitemap.xml
+# AI Knowledge Base: https://www.nutriflowvital.com.ar/llms.txt
+# AI Full Catalog: https://www.nutriflowvital.com.ar/llms-full.txt

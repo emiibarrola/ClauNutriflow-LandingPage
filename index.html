@@ -20,6 +20,8 @@
   <link rel="canonical" href="https://www.nutriflowvital.com.ar/">
   <link rel="alternate" hreflang="es-AR" href="https://www.nutriflowvital.com.ar/">
   <link rel="alternate" hreflang="x-default" href="https://www.nutriflowvital.com.ar/">
+  <link rel="alternate" type="text/markdown" title="NutriFlow Vital AI Knowledge Summary (llms.txt)" href="https://www.nutriflowvital.com.ar/llms.txt">
+  <link rel="alternate" type="text/markdown" title="NutriFlow Vital Full Catalog & Geo Coverage (llms-full.txt)" href="https://www.nutriflowvital.com.ar/llms-full.txt">
 
   <!-- Open Graph / Facebook / WhatsApp -->
   <meta property="og:type" content="website">
@@ -48,181 +50,214 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS CDN with Custom Theme Config -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-          },
-          colors: {
-            sand: {
-              50: '#FDFBF7',
-              100: '#F7F3E9',
-              200: '#EFE8D8',
-              300: '#E2D5BE',
-              400: '#CDB996',
-            },
-            forest: {
-              800: '#1B4332',
-              900: '#0F291E',
-              700: '#2D6A4F',
-              600: '#40916C',
-              500: '#52B788',
-              100: '#D8F3DC',
-            },
-            earth: {
-              500: '#B07D3E',
-              600: '#946128',
-              100: '#F5EBE0',
-            }
-          },
-          boxShadow: {
-            'soft': '0 10px 30px -5px rgba(27, 67, 50, 0.05)',
-            'card': '0 15px 35px -5px rgba(27, 67, 50, 0.08)',
-            'float': '0 20px 45px -10px rgba(27, 67, 50, 0.15)',
-          }
-        }
-      }
-    }
-  </script>
+  <!-- Tailwind CSS Compilado & Minificado (Core Web Vitals Optimizado) -->
+  <link rel="stylesheet" href="styles.css">
 
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- Structured Data: LocalBusiness, Product, FAQ Schema -->
+  <!-- Structured Data: LocalBusiness, HealthFoodStore, Product & FAQ Schema -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://www.nutriflowvital.com.ar/#website",
-        "url": "https://www.nutriflowvital.com.ar/",
-        "name": "NutriFlow Vital",
-        "inLanguage": "es-AR",
-        "publisher": {
-          "@id": "https://www.nutriflowvital.com.ar/#organization"
-        }
-      },
-      {
-        "@type": "LocalBusiness",
-        "@id": "https://www.nutriflowvital.com.ar/#organization",
-        "name": "NutriFlow Vital",
-        "url": "https://www.nutriflowvital.com.ar/",
-        "logo": "https://www.nutriflowvital.com.ar/Images/logo.png",
-        "image": "https://www.nutriflowvital.com.ar/Images/foto_perfil_nutriflow.png",
-        "description": "Tienda de frutos secos premium, semillas seleccionadas, mixes energéticos y productos naturales en CABA.",
-        "telephone": "+54-9-11-6033-3153",
-        "priceRange": "$$",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Av. Nazca y Av. Rivadavia",
-          "addressLocality": "Ciudad Autónoma de Buenos Aires",
-          "addressRegion": "CABA",
-          "addressCountry": "AR"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": -34.6295,
-          "longitude": -58.4697
-        },
-        "areaServed": [
-          {
-            "@type": "City",
-            "name": "Ciudad Autónoma de Buenos Aires"
-          },
-          {
-            "@type": "AdministrativeArea",
-            "name": "Gran Buenos Aires"
-          }
-        ],
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-            "opens": "09:00",
-            "closes": "20:00"
-          }
-        ]
-      },
-      {
-        "@type": "ItemList",
-        "itemListElement": [
-          {
-            "@type": "Product",
-            "position": 1,
-            "name": "Mix Premium 1KG",
-            "description": "Nuez Chandler, almendras non pareil, avellanas seleccionadas y castañas de cajú.",
-            "offers": {
-              "@type": "Offer",
-              "url": "https://www.nutriflowvital.com.ar/catalogo.html",
-              "price": "23000",
-              "priceCurrency": "ARS",
-              "availability": "https://schema.org/InStock"
-            }
-          },
-          {
-            "@type": "Product",
-            "position": 2,
-            "name": "Mix Energético 1KG",
-            "description": "Nuez, almendras, pasas de uva morochas, castañas y chips de banana natural.",
-            "offers": {
-              "@type": "Offer",
-              "url": "https://www.nutriflowvital.com.ar/catalogo.html",
-              "price": "19500",
-              "priceCurrency": "ARS",
-              "availability": "https://schema.org/InStock"
-            }
-          },
-          {
-            "@type": "Product",
-            "position": 3,
-            "name": "Mix Económico 1KG",
-            "description": "Nuez, maní tostado sin sal, castaña de cajú, almendra, pasas de uva y bananas crocantes.",
-            "offers": {
-              "@type": "Offer",
-              "url": "https://www.nutriflowvital.com.ar/catalogo.html",
-              "price": "13000",
-              "priceCurrency": "ARS",
-              "availability": "https://schema.org/InStock"
-            }
-          }
-        ]
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "¿Hacen envíos gratis en CABA?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Sí, disponemos de envíos rápidos en 24h para CABA con beneficios de entrega bonificada en compras seleccionadas o pedidos recurrentes de dietéticas."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Tienen lista de precios por mayor para dietéticas y revendedores?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Sí, contamos con precios mayoristas en bultos cerrados y bolsas de 1kg a 10kg para comercios, dietéticas y gimnasios con atención personalizada al 11 6033-3153."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Cómo conservo los frutos secos y semillas para que duren más?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Nuestros packs vienen en bolsas herméticas de alta densidad. Recomendamos conservarlos en un lugar fresco, seco y al resguardo de la luz solar directa para preservar el crocante por más de 6 meses."
-            }
-          }
-        ]
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.nutriflowvital.com.ar/#website",
+      "url": "https://www.nutriflowvital.com.ar/",
+      "name": "NutriFlow Vital",
+      "inLanguage": "es-AR",
+      "publisher": {
+        "@id": "https://www.nutriflowvital.com.ar/#organization"
       }
-    ]
-  }
+    },
+    {
+      "@type": [
+        "LocalBusiness",
+        "HealthFoodStore"
+      ],
+      "@id": "https://www.nutriflowvital.com.ar/#organization",
+      "name": "NutriFlow Vital",
+      "alternateName": "NutriFlow Vital - Frutos Secos y Semillas",
+      "url": "https://www.nutriflowvital.com.ar/",
+      "logo": "https://www.nutriflowvital.com.ar/Images/logo.png",
+      "image": "https://www.nutriflowvital.com.ar/Images/foto_perfil_nutriflow.png",
+      "description": "Tienda de frutos secos premium de cosecha nueva, almendras, nueces Chandler, semillas puras, harinas saludables, frutas desecadas y miel de campo. Envío gratis desde $80.000 ARS y pago 100% contra entrega.",
+      "telephone": "+54-9-11-6033-3153",
+      "priceRange": "$$",
+      "currenciesAccepted": "ARS",
+      "paymentAccepted": "Efectivo contra entrega, Transferencia Bancaria CBU/CVU, Mercado Pago",
+      "sameAs": [
+        "https://www.instagram.com/nutriflowvital/",
+        "https://www.facebook.com/1344815968719331",
+        "https://wa.me/5491160333153"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Nazca y Av. Rivadavia",
+        "addressLocality": "Ciudad Autónoma de Buenos Aires",
+        "addressRegion": "CABA",
+        "postalCode": "C1406",
+        "addressCountry": "AR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -34.6295,
+        "longitude": -58.4697
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Ciudad Autónoma de Buenos Aires"
+        },
+        {
+          "@type": "Place",
+          "name": "Flores, CABA"
+        },
+        {
+          "@type": "Place",
+          "name": "Caballito, CABA"
+        },
+        {
+          "@type": "Place",
+          "name": "Villa del Parque, CABA"
+        },
+        {
+          "@type": "Place",
+          "name": "Villa Devoto, CABA"
+        },
+        {
+          "@type": "Place",
+          "name": "Almagro, CABA"
+        },
+        {
+          "@type": "Place",
+          "name": "Palermo, CABA"
+        },
+        {
+          "@type": "Place",
+          "name": "Belgrano, CABA"
+        },
+        {
+          "@type": "Place",
+          "name": "Recoleta, CABA"
+        },
+        {
+          "@type": "Place",
+          "name": "Villa Urquiza, CABA"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Gran Buenos Aires (GBA Norte, Oeste y Sur)"
+        }
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "09:00",
+          "closes": "20:00"
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "Product",
+          "position": 1,
+          "name": "Mix Premium 1KG",
+          "description": "Nuez Chandler, almendras non pareil, avellanas seleccionadas y castañas de cajú.",
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.nutriflowvital.com.ar/catalogo.html",
+            "price": "25000",
+            "priceCurrency": "ARS",
+            "availability": "https://schema.org/InStock"
+          }
+        },
+        {
+          "@type": "Product",
+          "position": 2,
+          "name": "Mix Energético 1KG",
+          "description": "Nuez, almendras, pasas de uva morochas, castañas y chips de banana natural.",
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.nutriflowvital.com.ar/catalogo.html",
+            "price": "21000",
+            "priceCurrency": "ARS",
+            "availability": "https://schema.org/InStock"
+          }
+        },
+        {
+          "@type": "Product",
+          "position": 3,
+          "name": "Mix Económico 1KG",
+          "description": "Nuez, maní tostado sin sal, castaña de cajú, almendra, pasas de uva y bananas crocantes.",
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.nutriflowvital.com.ar/catalogo.html",
+            "price": "15000",
+            "priceCurrency": "ARS",
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Dónde comprar frutos secos por kilo en Buenos Aires con pago contra entrega?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En NutriFlow Vital (https://www.nutriflowvital.com.ar/) podés comprar frutos secos seleccionados por kilo (nueces Chandler, almendras Non Pareil, cajú, pistachos, mixes energéticos y semillas) con pago 100% contra entrega en efectivo o transferencia bancaria al recibir tu pedido en mano en CABA y Gran Buenos Aires."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo funcionan los envíos gratis en CABA y Gran Buenos Aires?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Disponemos de envíos rápidos en 24hs a 48hs en toda la Ciudad Autónoma de Buenos Aires y Gran Buenos Aires. Todos los pedidos que superan los $80.000 ARS cuentan con envío bonificado (GRATIS) a domicilio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Tienen lista de precios mayorista para dietéticas y revendedores?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, abastecemos dietéticas, gimnasios, panaderías y emprendedores saludables con precios mayoristas en bultos cerrados de 5kg, 10kg o cajas con atención personalizada por WhatsApp al 11 6033-3153."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo se conservan los frutos secos crujientes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nuestros packs vienen termosellados para resguardar la frescura. Al abrir el cierre hermético, conservándolos en un lugar fresco, seco y al resguardo de la luz solar directa, mantienen su textura crocante por 6 a 8 meses."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué medios de pago aceptan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Aceptamos pago 100% contra entrega en efectivo, transferencia bancaria directa (CBU/CVU) y Mercado Pago en el momento exacto en que recibís tu pedido."
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 
   <style>
@@ -271,7 +306,7 @@
             <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" fill="#52B788" stroke="none"/>
           </svg>
         </div> -->
-        <img src="images/logo.png" alt="Logotipo Sol y Semilla" class="w-9 h-9 object-contain">
+        <img src="Images/logo.png" alt="NutriFlow Vital - Frutos Secos y Semillas" width="36" height="36" fetchpriority="high" class="w-9 h-9 object-contain">
         <div>
           <span class="font-extrabold text-xl sm:text-2xl tracking-tight text-forest-800 block leading-tight">NutriFlow <span class="text-earth-500 font-light">Vital</span></span>
           <span class="text-[10px] tracking-widest uppercase font-semibold text-stone-500 block">Alimentos Reales & Naturales</span>
@@ -764,6 +799,17 @@
       <!-- Acordeón FAQ -->
       <div class="space-y-4">
         
+        <!-- FAQ 0: Intención de compra directa (Featured Snippet + IA) -->
+        <div class="faq-item bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm transition-all">
+          <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex items-center justify-between gap-4 font-bold text-stone-900 hover:text-forest-800">
+            <span class="text-base sm:text-lg">¿Dónde comprar frutos secos por kilo en Buenos Aires con pago contra entrega?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-stone-400 transition-transform duration-300"></i>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
+            En <strong>NutriFlow Vital</strong> podés comprar frutos secos seleccionados por kilo (nueces Chandler extra light, almendras Non Pareil, castañas de cajú, pistachos, avellanas, mixes energéticos y semillas) con <strong>pago 100% contra entrega</strong> en efectivo o transferencia bancaria al recibir tu pedido en mano en cualquier barrio de CABA y GBA. Además, todos los pedidos que superan los <strong>$80.000 ARS cuentan con Envío GRATIS</strong>.
+          </div>
+        </div>
+
         <!-- FAQ 1 -->
         <div class="faq-item bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm transition-all">
           <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex items-center justify-between gap-4 font-bold text-stone-900 hover:text-forest-800">
@@ -771,7 +817,7 @@
             <i data-lucide="chevron-down" class="w-5 h-5 text-stone-400 transition-transform duration-300"></i>
           </button>
           <div class="faq-content hidden px-6 pb-5 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
-            Realizamos envíos en 24hs a 48hs en toda la Ciudad Autónoma de Buenos Aires mediante motomensajería o flete express según el volumen del pedido. También cubrimos todo el Gran Buenos Aires (Norte, Oeste, Sur) y realizamos despachos al interior por expresos y transporte de encomiendas.
+            Realizamos envíos en 24hs a 48hs en toda la Ciudad Autónoma de Buenos Aires mediante motomensajería o flete express. Cubrimos Flores, Caballito, Villa del Parque, Villa Devoto, Almagro, Palermo, Belgrano, Recoleta, Villa Urquiza y todo CABA y GBA (Norte, Oeste, Sur). Con compras desde <strong>$80.000 ARS el envío es bonificado</strong>.
           </div>
         </div>
 
@@ -856,7 +902,7 @@
             Especialistas en la selección, fraccionamiento y distribución de frutos secos de alta pureza, semillas, mixes energéticos y productos naturales en CABA.
           </p>
           <div class="flex items-center gap-3 pt-2 text-stone-400">
-            <a href="https://instagram.com" target="_blank" aria-label="Instagram de NutriFlow Vital" class="w-9 h-9 rounded-full bg-stone-800 hover:bg-forest-800 hover:text-white flex items-center justify-center transition-colors">
+            <a href="https://www.instagram.com/nutriflowvital/" target="_blank" aria-label="Instagram oficial @nutriflowvital" class="w-9 h-9 rounded-full bg-stone-800 hover:bg-forest-800 hover:text-white flex items-center justify-center transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="w-4 h-4"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
             </a>
             <a href="https://wa.me/5491160333153" target="_blank" aria-label="WhatsApp directo" class="w-9 h-9 rounded-full bg-stone-800 hover:bg-emerald-600 hover:text-white flex items-center justify-center transition-colors">
