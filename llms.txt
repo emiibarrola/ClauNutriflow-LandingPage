@@ -19,7 +19,8 @@
   - **Plazos de entrega:** 24 a 48 hs hábiles en CABA; 24 a 72 hs hábiles en GBA; despachos a todo el país por transporte/encomienda.
 
 ## Cobertura Geo-Local (Geo-SEO CABA y GBA)
-- **Barrios de CABA (Entrega Express 24–48 hs):** Flores, Caballito, Villa del Parque, Villa Devoto, Almagro, Palermo, Belgrano, Recoleta, Villa Urquiza, Floresta, Parque Chacabuco, Villa Crespo, Colegiales, Núñez, Saavedra, Chacarita, Boedo, Parque Patricios, Mataderos, Villa Luro, Liniers, Monte Castro, Villa Pueyrredón, San Telmo, Puerto Madero, Microcentro y toda la Ciudad Autónoma de Buenos Aires.
+- **Zona de Entrega Prioritaria en el Día / 24 hs (Suroeste y Centro CABA):** **Flores, Mataderos, Villa Lugano**, Parque Avellaneda, Floresta, Villa Luro, Liniers, Caballito, Villa del Parque y Villa Devoto.
+- **Todos los Barrios de CABA (Entrega Express 24–48 hs):** Flores, Mataderos, Villa Lugano, Parque Avellaneda, Floresta, Villa Luro, Liniers, Caballito, Villa del Parque, Villa Devoto, Almagro, Palermo, Belgrano, Recoleta, Villa Urquiza, Parque Chacabuco, Villa Crespo, Colegiales, Núñez, Saavedra, Chacarita, Boedo, Parque Patricios, Monte Castro, Villa Pueyrredón, San Telmo, Puerto Madero, Microcentro y toda la Ciudad Autónoma de Buenos Aires.
 - **Gran Buenos Aires / AMBA (Entrega 24–72 hs):**
   - **GBA Norte:** Vicente López, Olivos, Florida, Martínez, San Isidro, Acassuso, Beccar, San Fernando, Tigre, General San Martín.
   - **GBA Oeste:** Ramos Mejía, Haedo, Morón, Castelar, Ituzaingó, Hurlingham, Caseros, Tres de Febrero, Ciudadela, San Justo, Moreno.

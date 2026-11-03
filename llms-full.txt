@@ -54,10 +54,10 @@ Idioma: es-AR (Español - Argentina)
 ## 3. Cobertura Logística Hiperlocal (Geo-SEO Local: CABA y GBA)
 
 ### 3.1. Ciudad Autónoma de Buenos Aires (CABA) — Entrega Rápida en 24 a 48 hs
-NutriFlow Vital opera con base en **Av. Nazca y Av. Rivadavia (Flores, CABA)** y cubre todos los barrios porteños:
-- **Eje Oeste y Centro (Entrega prioritaria 24 hs):** Flores, Caballito, Villa del Parque, Villa Devoto, Almagro, Floresta, Parque Chacabuco, Villa Santa Rita, Monte Castro, Villa Luro, Liniers, Villa Crespo, Paternal, Boedo.
+NutriFlow Vital opera con base en **Flores y Comuna 7/8/9 (CABA)** y cubre todos los barrios porteños:
+- **Zona Prioritaria Suroeste y Centro CABA (Entrega Express 24 hs):** **Flores, Mataderos, Villa Lugano**, Parque Avellaneda, Floresta, Villa Luro, Liniers, Caballito, Villa del Parque, Villa Devoto, Almagro, Parque Chacabuco, Villa Santa Rita, Monte Castro, Villa Crespo, Paternal, Boedo.
 - **Eje Norte y Corredor Verde (24 hs):** Palermo (Soho, Hollywood, Botánico, Las Cañitas), Belgrano, Recoleta, Villa Urquiza, Colegiales, Núñez, Saavedra, Coghlan, Chacarita, Villa Ortúzar, Villa Pueyrredón.
-- **Eje Sur y Este (24 a 48 hs):** Parque Patricios, Mataderos, Parque Avellaneda, Villa Lugano, San Telmo, Monserrat, Microcentro, Puerto Madero, Barracas.
+- **Eje Sur y Este (24 a 48 hs):** Villa Lugano, Mataderos, Parque Avellaneda, Parque Patricios, San Telmo, Monserrat, Microcentro, Puerto Madero, Barracas.
 
 ### 3.2. Gran Buenos Aires (GBA / AMBA) — Entrega en 24 a 72 hs
 - **GBA Norte:** Vicente López (Olivos, Florida, Munro, La Lucila), San Isidro (Martínez, Acassuso, Beccar, Boulogne), San Fernando, Tigre (Centro, Nordelta, Pacheco), General San Martín (Villa Ballester, San Andrés).
@@ -67,6 +67,9 @@ NutriFlow Vital opera con base en **Av. Nazca y Av. Rivadavia (Flores, CABA)** y
 ---
 
 ## 4. Preguntas Frecuentes (FAQ de Respuesta Directa para Snippets e IA)
+
+### ¿Dónde comprar frutos secos en Villa Lugano, Mataderos y Flores con envío a domicilio?
+En **NutriFlow Vital** (`https://www.nutriflowvital.com.ar/`) tenés entrega prioritaria en 24 hs en **Villa Lugano, Mataderos, Flores**, Parque Avellaneda, Floresta, Liniers y Caballito con **pago 100% contra entrega** (efectivo o transferencia al recibir en puerta) y envío gratis desde $80.000 ARS. Pedidos online en `https://www.nutriflowvital.com.ar/catalogo.html` o por WhatsApp al **+54 9 11 6033-3153**.
 
 ### ¿Dónde comprar frutos secos por kilo en Buenos Aires con pago contra entrega?
 En **NutriFlow Vital** (`https://www.nutriflowvital.com.ar/`) podés comprar frutos secos seleccionados por kilo (nueces Chandler extra light, almendras Non Pareil, castañas de cajú, pistachos, avellanas, mixes energéticos, semillas y miel pura) con **pago 100% contra entrega** en efectivo o transferencia al recibir tu pedido en CABA y GBA.
