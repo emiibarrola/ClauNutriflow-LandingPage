@@ -2107,6 +2107,12 @@
         </a>
       </div>
 
+      <!-- Navegación Rápida en Header -->
+      <nav aria-label="Secciones del catálogo" class="hidden md:flex items-center gap-6 text-sm font-semibold text-stone-700">
+        <a href="#packs-catalogo-section" class="hover:text-forest-800 transition-colors font-bold text-forest-800">★ Packs Combinados</a>
+        <a href="#catalogo-individual" class="hover:text-forest-800 transition-colors">Catálogo</a>
+      </nav>
+
       <!-- Quick Actions (Cart Button) -->
       <div class="flex items-center gap-2.5">
         <button id="open-cart-btn" onclick="toggleCartDrawer(true)" class="relative inline-flex items-center gap-2.5 bg-forest-800 hover:bg-forest-700 text-white font-bold py-2.5 px-4 rounded-xl shadow-soft hover:shadow-card hover:scale-[1.02] transition-all">
@@ -2153,6 +2159,33 @@
           </span>
         </div>
       </div>
+    </div>
+
+    <!-- SECCIÓN DEDICADA DESTACADA ARRIBA DE TODO: PACKS COMBINADOS -->
+    <section id="packs-catalogo-section" style="margin-bottom:48px;" class="scroll-mt-28">
+      <div class="mb-6 space-y-2">
+        <span class="text-[11px] font-bold tracking-widest uppercase text-emerald-300 bg-forest-800 px-3.5 py-1.5 rounded-full inline-block shadow-xs">
+          ★ Selección Combinada Destacada
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight leading-tight">
+          Packs Armados para el Hogar
+        </h2>
+        <p class="text-sm sm:text-base text-stone-600 leading-relaxed max-w-2xl">
+          Combinaciones equilibradas de nuestros frutos secos, mixes y miel pura listas para sumar a tu pedido en un solo click.
+        </p>
+      </div>
+      <div id="catalog-packs-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      </div>
+    </section>
+
+    <!-- ENCABEZADO PRODUCTOS INDIVIDUALES -->
+    <div id="catalogo-individual" style="margin-top:16px;margin-bottom:16px;" class="pt-8 border-t border-stone-200/80 scroll-mt-24">
+      <span class="text-[11px] font-bold tracking-widest uppercase text-forest-700 bg-forest-100 px-3 py-1 rounded-full inline-block mb-2">
+        Variedades Individuales
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight">
+        Catálogo Individual Completo
+      </h2>
     </div>
 
     <!-- BARRA DE BÚSQUEDA Y FILTRADO POR CATEGORÍAS -->
@@ -2714,7 +2747,53 @@
             };
           });
 
-        const cartChanged = syncCatalogCartWithProducts(PRODUCTS);
+        // Crear Packs Combinados en una lista separada (PACK_PRODUCTS) para su sección propia
+        const findById = (id) => PRODUCTS.find(p => p.id === id.toLowerCase());
+        const comboDefs = [
+          {
+            id: "pack_energia_miel",
+            name: "Pack Energía & Miel",
+            unit: "2 KG + MIEL",
+            desc: "Combinación natural para desayunos y colaciones (Mix energético 1 KG, Granola crocante 1 KG, Miel líquida pura).",
+            ids: ["MIX_ENERGETICO", "GRANOLA", "MIEL_LIQUIDA"]
+          },
+          {
+            id: "pack_duo_cosecha",
+            name: "Pack Dúo Cosecha Seleccionada",
+            unit: "2 KG",
+            desc: "Selección noble rica en Omega 3 y antioxidantes (Mix premium 1 KG, Nuez Chandler extra light 1 KG).",
+            ids: ["MIX_PREMIUM", "NUEZ_CHANDLER"]
+          },
+          {
+            id: "pack_despensa_noble",
+            name: "Pack Despensa Noble",
+            unit: "3 KG",
+            desc: "Frutos secos puros de calibre seleccionado en envase hermético (Almendra non pareil 1 KG, Nuez Chandler 1 KG, Castaña de cajú tostada 1 KG).",
+            ids: ["ALMENDRA_NONPAREIL", "NUEZ_CHANDLER", "CAJU_TOSTADA"]
+          }
+        ];
+
+        window.PACK_PRODUCTS = [];
+        comboDefs.forEach(c => {
+          const items = c.ids.map(findById);
+          if (items.every(Boolean)) {
+            const totalPrice = items.reduce((sum, it) => sum + it.price, 0);
+            window.PACK_PRODUCTS.push({
+              id: c.id,
+              name: c.name,
+              category: "packs",
+              unit: c.unit,
+              price: totalPrice,
+              desc: c.desc,
+              badge: "Pack Combinado",
+              badgeColor: "bg-forest-800 text-emerald-300",
+              image: items[0].image,
+              images: items.map(it => it.image)
+            });
+          }
+        });
+
+        const cartChanged = syncCatalogCartWithProducts(PRODUCTS.concat(window.PACK_PRODUCTS || []));
         sheetLoadCompleted = true;
         sheetLoadFailed = false;
         updateCategoryPillCounts();
@@ -2772,7 +2851,7 @@
     }
 
     function setProductQuantity(productId, delta) {
-      const prod = PRODUCTS.find(p => p.id === productId);
+      const prod = PRODUCTS.find(p => p.id === productId) || (window.PACK_PRODUCTS || []).find(p => p.id === productId);
       if (!prod) return;
 
       const title = prod.name;
@@ -2954,6 +3033,41 @@
           </div>
         `;
       }).join('');
+
+      const packsGrid = document.getElementById("catalog-packs-grid");
+      if (packsGrid && window.PACK_PRODUCTS) {
+        packsGrid.innerHTML = window.PACK_PRODUCTS.map(prod => {
+          const qty = getQuantity(prod.name);
+          const isInCart = qty > 0;
+          return `
+            <div style="border:2px solid rgba(27,67,50,0.22);" class="product-card bg-white rounded-3xl p-5 shadow-card hover:shadow-float hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+              <div>
+                <div class="relative overflow-hidden rounded-2xl bg-sand-100 aspect-square mb-4">
+                  ${prod.images && prod.images.length === 2
+                    ? `<div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;width:100%;height:100%;background:#ffffff;"><img src="${prod.images[0]}" alt="${prod.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"><img src="${prod.images[1]}" alt="${prod.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></div>`
+                    : `<div style="display:grid;grid-template-rows:55% 45%;gap:3px;width:100%;height:100%;background:#ffffff;"><div style="width:100%;height:100%;overflow:hidden;"><img src="${prod.images[0]}" alt="${prod.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;width:100%;height:100%;overflow:hidden;"><img src="${prod.images[1]}" alt="${prod.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"><img src="${prod.images[2]}" alt="${prod.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></div></div>`}
+                  <span class="absolute top-3 left-3 ${prod.badgeColor} text-[11px] font-extrabold px-3 py-1 rounded-full shadow-sm">${prod.badge}</span>
+                  <span class="absolute top-3 right-3 bg-white/95 text-stone-800 text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs border border-stone-200/40">${prod.unit}</span>
+                  ${isInCart ? `<div class="absolute bottom-3 left-3 bg-forest-900/90 backdrop-blur-xs text-white text-[11px] font-bold px-2.5 py-1 rounded-lg flex items-center gap-1.5 shadow"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>${qty} en tu pedido</span></div>` : ""}
+                </div>
+                <div class="space-y-1.5">
+                  <h3 class="text-base font-bold text-stone-900 group-hover:text-forest-800 transition-colors leading-snug">${prod.name}</h3>
+                  <p class="text-xs text-stone-500 line-clamp-2 leading-relaxed">${prod.desc}</p>
+                </div>
+              </div>
+              <div class="pt-4 mt-3 border-t border-stone-100 flex items-center justify-between gap-2">
+                <div>
+                  <span class="text-[10px] text-stone-400 block font-medium">Por ${prod.unit}</span>
+                  <span class="text-lg font-black text-stone-900">$${prod.price.toLocaleString('es-AR')}</span>
+                </div>
+                <div>
+                  ${!isInCart ? `<button onclick="setProductQuantity('${prod.id}', 1)" class="inline-flex items-center gap-1.5 bg-forest-800 hover:bg-forest-700 active:scale-95 text-white text-xs font-bold py-2.5 px-3.5 rounded-xl shadow-xs transition-all"><i data-lucide="plus" class="w-3.5 h-3.5 text-emerald-300"></i><span>Agregar</span></button>` : `<div class="inline-flex items-center gap-1 bg-forest-50 border border-forest-800/30 rounded-xl p-1 shadow-xs"><button onclick="setProductQuantity('${prod.id}', -1)" class="w-7 h-7 flex items-center justify-center text-forest-800 hover:bg-white rounded-lg font-bold text-sm transition-colors" aria-label="Restar uno">-</button><span class="text-xs font-black text-forest-900 w-6 text-center">${qty}</span><button onclick="setProductQuantity('${prod.id}', 1)" class="w-7 h-7 flex items-center justify-center text-white bg-forest-800 hover:bg-forest-700 rounded-lg font-bold text-sm transition-colors shadow-xs" aria-label="Sumar uno">+</button></div>`}
+                </div>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
 
       lucide.createIcons();
     }

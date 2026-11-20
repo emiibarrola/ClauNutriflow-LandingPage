@@ -670,7 +670,8 @@
       <!-- NAVEGACIÓN DESKTOP -->
       <nav aria-label="Navegación principal" class="hidden md:flex items-center gap-7 text-sm font-semibold text-stone-700">
         <a href="#beneficios" class="hover:text-forest-800 transition-colors">Beneficios</a>
-        <a href="#productos" class="hover:text-forest-800 transition-colors">Packs & Catálogo</a>
+        <a href="#packs" class="hover:text-forest-800 transition-colors font-bold text-forest-800">★ Packs Combinados</a>
+        <a href="#productos" class="hover:text-forest-800 transition-colors">Catálogo</a>
         <!--<a href="catalogo.html" class="inline-flex items-center gap-1.5 text-forest-800 hover:text-forest-700 font-bold bg-forest-100/60 hover:bg-forest-100 px-3 py-1.5 rounded-xl transition-all">
           <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-emerald-700"></i>
           <span>Catálogo Completo</span>
@@ -707,8 +708,12 @@
           <span>Beneficios</span>
           <i data-lucide="chevron-right" class="w-4 h-4 text-stone-400"></i>
         </a>
+        <a href="#packs" onclick="toggleMobileMenu()" class="hover:text-forest-800 transition-colors py-1 flex items-center justify-between border-b border-stone-100 pb-2 font-bold text-forest-800">
+          <span>★ Packs Combinados</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-stone-400"></i>
+        </a>
         <a href="#productos" onclick="toggleMobileMenu()" class="hover:text-forest-800 transition-colors py-1 flex items-center justify-between border-b border-stone-100 pb-2">
-          <span>Packs & Catálogo</span>
+          <span>Catálogo</span>
           <i data-lucide="chevron-right" class="w-4 h-4 text-stone-400"></i>
         </a>
         <a href="catalogo.html" class="bg-forest-100/70 text-forest-800 font-bold py-2 px-3 rounded-xl flex items-center justify-between border border-forest-200">
@@ -776,7 +781,7 @@
 
       <!-- CTAs Principales -->
       <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#productos" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-forest-800 hover:bg-forest-700 text-white font-bold py-4 px-8 rounded-2xl shadow-card hover:shadow-float hover:-translate-y-0.5 active:translate-y-0 transition-all text-base">
+        <a href="#packs" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-forest-800 hover:bg-forest-700 text-white font-bold py-4 px-8 rounded-2xl shadow-card hover:shadow-float hover:-translate-y-0.5 active:translate-y-0 transition-all text-base">
           <span>Ver Packs & Catálogo</span>
           <i data-lucide="arrow-right" class="w-5 h-5 text-emerald-300"></i>
         </a>
@@ -897,8 +902,30 @@
   </section>
 
 
-  <!-- 5. PRODUCT SHOWCASE (SECCIÓN DE PRODUCTOS & CATÁLOGO) -->
-  <section id="productos" class="py-20 bg-sand-50 scroll-mt-24">
+  <!-- 5. SECCIÓN DEDICADA DESTACADA: PACKS COMBINADOS -->
+  <section id="packs" class="py-20 bg-sand-50 border-b border-stone-200/70 scroll-mt-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div class="space-y-3">
+          <span class="text-xs font-bold tracking-widest uppercase text-emerald-300 bg-forest-800 px-3.5 py-1.5 rounded-full inline-block shadow-xs">
+            ★ Selección Combinada Destacada
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">
+            Packs Armados para el Hogar
+          </h2>
+          <p class="text-stone-600 text-base max-w-xl">
+            Combinaciones equilibradas de nuestros frutos secos, mixes y miel pura listas para disfrutar en casa.
+          </p>
+        </div>
+      </div>
+
+      <div id="packs-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      </div>
+    </div>
+  </section>
+
+  <!-- 5.5 PRODUCT SHOWCASE (SECCIÓN DE PRODUCTOS & CATÁLOGO) -->
+  <section id="productos" class="py-20 bg-white scroll-mt-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Encabezado con Switch de Categoría -->
@@ -908,7 +935,7 @@
             Catálogo Oficial 2026
           </span>
           <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">
-            Nuestros Packs & Frutos Seleccionados
+            Nuestros Frutos & Semillas Seleccionadas
           </h2>
           <p class="text-stone-600 text-base max-w-xl">
             Precios minoristas por kilogramo. Consultanos por lista mayorista para reventas y dietéticas.
@@ -916,7 +943,7 @@
         </div>
 
         <!-- Filtros Rápidos (UI interactiva) -->
-        <div class="flex flex-wrap items-center gap-2 bg-white p-1.5 rounded-2xl border border-stone-200 shadow-sm">
+        <div class="flex flex-wrap items-center gap-2 bg-sand-50 p-1.5 rounded-2xl border border-stone-200 shadow-sm">
           <button data-category="todos" onclick="filterProducts('todos', this)" class="category-btn active px-4 py-2 rounded-xl text-xs font-bold transition-all bg-forest-800 text-white">Todos</button>
           <button data-category="mixes" onclick="filterProducts('mixes', this)" class="category-btn px-4 py-2 rounded-xl text-xs font-bold transition-all text-stone-600 hover:text-stone-900">Mixes Energéticos</button>
           <button data-category="frutos" onclick="filterProducts('frutos', this)" class="category-btn px-4 py-2 rounded-xl text-xs font-bold transition-all text-stone-600 hover:text-stone-900">Frutos Secos</button>
@@ -929,7 +956,7 @@
       </div>
 
       <!-- Banner de Catálogo Completo / Descarga PDF / Mayorista -->
-      <div class="mt-12 bg-white rounded-3xl p-6 sm:p-8 border border-stone-200/80 shadow-soft flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="mt-12 bg-sand-50 rounded-3xl p-6 sm:p-8 border border-stone-200/80 shadow-soft flex flex-col md:flex-row items-center justify-between gap-6">
         <div class="flex items-center gap-4">
           <div class="w-14 h-14 rounded-2xl bg-forest-100 text-forest-800 flex items-center justify-center shrink-0">
             <i data-lucide="book-open" class="w-7 h-7"></i>
@@ -940,7 +967,7 @@
           </div>
         </div>
         <div class="flex items-center gap-3 w-full md:w-auto">
-          <a href="catalogo.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-sand-100 hover:bg-forest-100 text-stone-800 hover:text-forest-900 font-bold py-3 px-5 rounded-2xl text-xs transition-colors shadow-xs">
+          <a href="catalogo.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-forest-100 text-stone-800 hover:text-forest-900 font-bold py-3 px-5 rounded-2xl text-xs transition-colors border border-stone-200 shadow-xs">
             <i data-lucide="shopping-bag" class="w-4 h-4 text-emerald-700"></i> Ver Lista Completa & Carrito
           </a>
           <a href="https://wa.me/5491160333153?text=Hola!%20Me%20interesa%20la%20lista%20de%20precios%20mayoristas%20para%20dieteticas" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-forest-800 hover:bg-forest-700 text-white font-bold py-3 px-5 rounded-2xl text-xs shadow transition-all">
@@ -1480,6 +1507,22 @@
       } catch (e) {}
     }
 
+    function addComboToCart(comboKey, comboTitle) {
+      const items = (window.__nutriflowActiveCombos && window.__nutriflowActiveCombos[comboKey]) || [];
+      if (!items.length) return;
+      items.forEach(it => {
+        const existing = cart.find(item => item.title === it.title || item.name === it.title);
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          cart.push({ title: it.title, name: it.title, price: it.price, image: it.image, quantity: 1 });
+        }
+      });
+      saveCartToStorage();
+      updateCartUI();
+      showToast("¡" + comboTitle + " añadido al carrito!");
+    }
+
     function addToCart(title, price, image) {
       const existing = cart.find(item => item.title === title || item.name === title);
       if (existing) {
@@ -1862,6 +1905,96 @@
             </div>
           `;
         }).join('');
+
+        // Renderizar Sección Dedicada de Packs Combinados (#packs-grid) con diseño de tarjeta idéntico
+        const packsGrid = document.getElementById("packs-grid");
+        if (packsGrid) {
+          const findRowById = (id) => rows.find(r => (r.ID || "").trim().toUpperCase() === id);
+          const getPrice = (row) => row ? (parseInt(String(row.Precio || "0").replace(/[^0-9]/g, ""), 10) || 0) : 0;
+          const isAvailable = (row) => {
+            if (!row) return false;
+            const st = (row.Estado_Stock || "").toLowerCase().trim();
+            return st !== "sin stock" && st !== "agotado";
+          };
+
+          const comboDefs = [
+            {
+              subtitle: "Pack Combinado",
+              unit: "2 KG + MIEL",
+              name: "Pack Energía & Miel",
+              desc: "Combinación natural para desayunos y colaciones (Mix energético 1 KG, Granola crocante 1 KG, Miel líquida pura).",
+              ids: ["MIX_ENERGETICO", "GRANOLA", "MIEL_LIQUIDA"]
+            },
+            {
+              subtitle: "Pack Combinado",
+              unit: "2 KG",
+              name: "Pack Dúo Cosecha Seleccionada",
+              desc: "Selección noble rica en Omega 3 y antioxidantes (Mix premium 1 KG, Nuez Chandler extra light 1 KG).",
+              ids: ["MIX_PREMIUM", "NUEZ_CHANDLER"]
+            },
+            {
+              subtitle: "Pack Combinado",
+              unit: "3 KG",
+              name: "Pack Despensa Noble",
+              desc: "Frutos secos puros de calibre seleccionado en envase hermético (Almendra non pareil 1 KG, Nuez Chandler 1 KG, Castaña de cajú tostada 1 KG).",
+              ids: ["ALMENDRA_NONPAREIL", "NUEZ_CHANDLER", "CAJU_TOSTADA"]
+            }
+          ];
+
+          window.__nutriflowActiveCombos = {};
+
+          packsGrid.innerHTML = comboDefs.map((c, idxCombo) => {
+            const items = c.ids.map(findRowById);
+            if (items.some(r => !isAvailable(r))) return "";
+            const totalComboPrice = items.reduce((acc, r) => acc + getPrice(r), 0);
+            const comboKey = "combo_" + idxCombo;
+            const mainImg = (items[0] && items[0].Imagen_URL) || "";
+            const imgs = items.map(r => r.Imagen_URL || "");
+            window.__nutriflowActiveCombos[comboKey] = [{
+              title: c.name,
+              price: totalComboPrice,
+              image: mainImg
+            }];
+
+            const collageHtml = imgs.length === 2
+              ? `<div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;width:100%;height:100%;background:#ffffff;"><img src="${imgs[0]}" alt="${c.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"><img src="${imgs[1]}" alt="${c.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></div>`
+              : `<div style="display:grid;grid-template-rows:55% 45%;gap:3px;width:100%;height:100%;background:#ffffff;"><div style="width:100%;height:100%;overflow:hidden;"><img src="${imgs[0]}" alt="${c.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;width:100%;height:100%;overflow:hidden;"><img src="${imgs[1]}" alt="${c.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"><img src="${imgs[2]}" alt="${c.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></div></div>`;
+
+            return `
+              <div style="border:2px solid rgba(27,67,50,0.22);" class="bg-white rounded-3xl p-5 shadow-card hover:shadow-float hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                <div>
+                  <div class="relative overflow-hidden rounded-2xl bg-sand-100 aspect-square mb-4">
+                    ${collageHtml}
+                    <span class="absolute top-3 left-3 bg-forest-800 text-emerald-300 text-[10px] font-extrabold px-3 py-1 rounded-full shadow-sm uppercase tracking-wider">
+                      ★ ${c.subtitle}
+                    </span>
+                    <span class="absolute top-3 right-3 bg-white/95 text-stone-800 text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">
+                      ${c.unit}
+                    </span>
+                  </div>
+
+                  <div class="space-y-1">
+                    <span class="text-[11px] font-semibold text-emerald-700 uppercase tracking-wider">${c.subtitle}</span>
+                    <h3 class="text-lg font-bold text-stone-900 group-hover:text-forest-800 transition-colors">${c.name}</h3>
+                    <p class="text-xs text-stone-500 line-clamp-2">
+                      ${c.desc}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="pt-4 mt-2 border-t border-stone-200/60 flex items-center justify-between">
+                  <div>
+                    <span class="text-[10px] text-stone-400 block font-medium">Precio por ${c.unit}</span>
+                    <span class="text-xl font-extrabold text-stone-900">$${totalComboPrice.toLocaleString('es-AR')}</span>
+                  </div>
+                  <button onclick="addComboToCart('${comboKey}', '${c.name}')" class="inline-flex items-center gap-1.5 bg-forest-800 hover:bg-forest-700 text-white text-xs font-bold py-2.5 px-4 rounded-xl shadow-sm hover:scale-105 transition-all">
+                    <i data-lucide="plus" class="w-4 h-4"></i> Añadir
+                  </button>
+                </div>
+              </div>
+            `;
+          }).join("");
+        }
 
         lucide.createIcons();
         if (!isFirstLoad && (hasSheetChanged || cartChanged)) {
