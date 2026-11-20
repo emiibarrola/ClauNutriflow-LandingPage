@@ -3,7 +3,7 @@
   <!-- Página Principal / Tienda Online Oficial NutriFlow Vital -->
   <url>
     <loc>https://www.nutriflowvital.com.ar/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -11,7 +11,7 @@
   <!-- Catálogo Completo y Armador de Pedidos Online (26 Productos) -->
   <url>
     <loc>https://www.nutriflowvital.com.ar/catalogo.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
@@ -19,7 +19,7 @@
   <!-- Landing Hiperlocal SEO: Frutos Secos en Lugano (Comuna 8 CABA) -->
   <url>
     <loc>https://www.nutriflowvital.com.ar/frutos-secos-lugano.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -27,7 +27,7 @@
   <!-- Manifiesto Resumido para Motores de IA Generativa (GEO) -->
   <url>
     <loc>https://www.nutriflowvital.com.ar/llms.txt</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.70</priority>
   </url>
@@ -35,7 +35,7 @@
   <!-- Base de Conocimiento Completa y Catálogo de 26 SKUs para IA (GEO) -->
   <url>
     <loc>https://www.nutriflowvital.com.ar/llms-full.txt</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.70</priority>
   </url>
